@@ -8,5 +8,5 @@
 	foreach ($talks as $talk){
 		$talkmain .= $talk;
 	}
-	echo "./AquesTalkPi '".$talkmain."' | aplay";
-	#exec("./AquesTalkPi '".$talkmain."' | aplay");
+	#echo "./AquesTalkPi '".$talkmain."' | aplay";
+	exec("./AquesTalkPi '".$talkmain."' | aplay");
