@@ -5,7 +5,7 @@
 	$context = stream_context_create(
   	array(
     	"http" => array(
-      		"proxy" => "http://133.88.120.1:8585",
+      		"proxy" => "tcp://133.88.120.1:8585",
       		"request_fulluri" => TRUE,
     	)
   	));
@@ -24,7 +24,7 @@
 		$ariaurl .= $aria;
 		$ariaurl .= ",jp";
 
-		$json = file_get_contents($ariaurl,$context);
+		$json = file_get_contents($ariaurl, false, $context);
 		$json = mb_convert_encoding($json, 'utf8', 'ASCII,JIS,,UTF-8,EUC-JP,SJIS-WIN');
 		$datas = json_decode($json, true);
 
