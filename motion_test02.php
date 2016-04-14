@@ -32,5 +32,5 @@
 	
 	foreach ($arias as $aria) {
 		$talkdate = $aria;
-		exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdata."' | aplay");
+		exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdate."' | aplay");
 	};
