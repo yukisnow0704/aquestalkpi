@@ -26,11 +26,46 @@
 		$ariadates[$aria]['weather'] = $datas['weather'][0]['main'];
 		$ariadates[$aria]['humidity'] = $datas['main']['humidity'];
 		$ariadates[$aria]['wind_speed'] = $datas['wind']['speed'];
+		print_r($ariadates);
 	}
 
-	exec("amixer cset numid=3 1");
+	#exec("amixer cset numid=3 1");
 	
 	foreach ($arias as $aria) {
-		$talkdate = $aria;
+		$talkdate = "";
+		switch ($aria) {
+			case 'Hamamatsu':
+				$talkdate = '浜松';
+				break;
+			case 'Fukuroi':
+				$talkdate = '袋井';
+				break;
+			case 'Shimizu':
+				$talkdate = '清水';
+				break;
+			
+			default:
+				$aria = '場所不明';
+				break;
+		}
+
+		$talkdate .= "の天気は、";
+		$talkdate .= $ariadates[$aria]['weather'];
+		$talkdate .= "です。現在の気温は、";
+		$talkdate .= $ariadates[$aria]['temp'];
+		$talkdate .= "です。最高気温、最低気温は、";
+		$talkdate .= $ariadates[$aria]['temp_max'];
+		$talkdate .= "度、";
+		$talkdate .= $ariadates[$aria]['temp_min'];
+		$talkdate .= "度です。また、湿度、風速は、";
+		$talkdate .= $ariadates[$aria]['humidity'];
+		$talkdate .= "パーセント、秒速";
+		$talkdate .= $ariadates[$aria]['wind_speed'];
+		$talkdate .= "となっています。";
+		
+		if ($ariadates[$aria]['temp'] <= 13) {
+			$talkdate .= "少し肌寒いですね。今日も頑張りましょう！！";
+		};
+		#echo $talkdate;
 		exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdate."' | aplay");
-	};
+	}
