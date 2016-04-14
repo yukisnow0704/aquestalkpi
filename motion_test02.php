@@ -2,6 +2,14 @@
 	$url = "http://api.openweathermap.org/data/2.5/weather";
 	$ariadates = array();
 
+	$context = stream_context_create(
+  	array(
+    	"http" => array(
+      		"proxy" => "tcp://133.88.120.1:8585",
+      		"request_fulluri" => TRUE,
+    	)
+  	));
+
 	#取得したいエリアの配列
 	$arias = array(
 		"Hamamatsu",
@@ -16,7 +24,7 @@
 		$ariaurl .= $aria;
 		$ariaurl .= ",jp";
 
-		$json = file_get_contents($ariaurl);
+		$json = file_get_contents($ariaurl,$context);
 		$json = mb_convert_encoding($json, 'utf8', 'ASCII,JIS,,UTF-8,EUC-JP,SJIS-WIN');
 		$datas = json_decode($json, true);
 
