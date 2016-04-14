@@ -10,4 +10,4 @@
 		$talkmain .= $talk;
 	}
 	#echo "./AquesTalkPi '".$talkmain."' | aplay";
-	exec("./AquesTalkPi '".$talkmain."' | aplay");
+	exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkmain."' | aplay");
