@@ -1,4 +1,5 @@
 <?php
+	exec("amixer cset numid=3 1")
 	$talkmain;
 	$talks = array(
 		"私はテスターです興味を持っていただけたら嬉しいです。",
