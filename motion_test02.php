@@ -5,7 +5,7 @@
 	$context = stream_context_create(
   	array(
     	"http" => array(
-      		"proxy" => "tcp://133.88.120.1:8585",
+      		"proxy" => "http://133.88.120.1:8585",
       		"request_fulluri" => TRUE,
     	)
   	));
