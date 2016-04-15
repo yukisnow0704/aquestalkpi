@@ -29,9 +29,7 @@
 		$datas = json_decode($json, true);
 
 		$ariadates[$aria]['temp'] = $datas['main']['temp']-273.15;
-		$ariadates[$aria]['temp_max'] = $datas['main']['temp_max']-273.15;
-		$ariadates[$aria]['temp_min'] = $datas['main']['temp_min']-273.15;
-		$ariadates[$aria]['weather'] = $datas['weather'][0]['main'];
+		$ariadates[$aria]['weather'] = $datas['weather'][0]['description'];
 		$ariadates[$aria]['humidity'] = $datas['main']['humidity'];
 		$ariadates[$aria]['wind_speed'] = $datas['wind']['speed'];
 		print_r($ariadates);
@@ -58,22 +56,51 @@
 		}
 
 		$talkdate .= "の天気は、";
+		switch ($ariadates[$aria]['weather']) {
+			case 'clear sky':
+				$talkdate .= "快晴みたい";
+				break;
+			case 'few clouds':
+				$talkdate .= "雲がかかるよう";
+				break;
+			case 'scattered clouds':
+				$talkdate .= "曇りみたい";
+				break;
+			case 'broken clouds':
+				$talkdate .= "雨雲がかかるよう";
+				break;
+			case 'shower rain':
+				$talkdate .= "にわか雨みたい";
+				break;
+			case 'rain':
+				$talkdate .= "雨みたい";
+				break;
+			case 'thunderstrom':
+				$talkdate .= "雷雨みたい";
+				break;
+			case 'snow':
+				$talkdate .= "雪が降ってるみたい";
+				break;
+			case 'mist':
+				$talkdate .= "霧がかってるみたい";
+				break;
+			default:
+				$talkdate .= "どうやらAPIが頭おかしいみたい";
+				break;
+		}
 		$talkdate .= $ariadates[$aria]['weather'];
 		$talkdate .= "です。現在の気温は、";
 		$talkdate .= $ariadates[$aria]['temp'];
-		$talkdate .= "です。最高気温、最低気温は、";
-		$talkdate .= $ariadates[$aria]['temp_max'];
-		$talkdate .= "度、";
-		$talkdate .= $ariadates[$aria]['temp_min'];
 		$talkdate .= "度です。また、湿度、風速は、";
 		$talkdate .= $ariadates[$aria]['humidity'];
 		$talkdate .= "パーセント、秒速";
 		$talkdate .= $ariadates[$aria]['wind_speed'];
-		$talkdate .= "となっています。";
+		$talkdate .= "メートルとなっています。";
 		
 		if ($ariadates[$aria]['temp'] <= 13) {
 			$talkdate .= "少し肌寒いですね。今日も頑張りましょう！！";
 		};
 		#echo $talkdate;
 		exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdate."' | aplay");
+		exec("php /home/pi/source/aquestalkpi/motion_test03");
 	}
