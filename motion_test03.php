@@ -30,8 +30,7 @@
 		$datas = json_decode($json, true);
 
 		$ariadates[$aria]['date'] = $datas['list'][0]['dt'];
-		$date = $ariadates[$aria]['date'];
-		echo date("Y-m-d H:i:s", $date);
+		echo date("Y-m-d H:i:s", $ariadates[$aria]['date']);
 	}
 
 	#exec("amixer cset numid=3 1");
