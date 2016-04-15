@@ -56,7 +56,7 @@
 				$aria = '場所不明';
 				break;
 		}
-		$talkdate .= "の天気は、" 
+		$talkdate .= "の天気は、";
 		$talkdate .= date("H時", $ariadates[$aria]['date'][4]);
 		$talkdate .= "から";
 		switch ($ariadates[$aria]['weather'][4]) {
@@ -92,7 +92,7 @@
 				break;
 		}
 		if ($ariadates[$aria]['weather'][4] == 'thunderstrom' || $ariadates[$aria]['weather'][4] == 'rain' || $ariadates[$aria]['weather'][4] == 'shower rain') {
-			$talkdate .= "どうやら、雨が降るみたいなので傘を忘れないようにしてくださいね";
+			$talkdate .= "どうやら、雨が降るみたいなので傘を忘れないようにしてくださいね                                        ";
 		}
 		
 		echo $talkdate;
