@@ -31,7 +31,7 @@
 		$ariadates[$aria]['weather'] = $datas['weather'][0]['description'];
 		$ariadates[$aria]['humidity'] = $datas['main']['humidity'];
 		$ariadates[$aria]['wind_speed'] = $datas['wind']['speed'];
-		print_r($ariadates);
+		#print_r($ariadates);
 	}
 
 	#exec("amixer cset numid=3 1");
