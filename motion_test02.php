@@ -13,8 +13,7 @@
 	#取得したいエリアの配列
 	$arias = array(
 		"Hamamatsu",
-		"Fukuroi",
-		"Shimizu"
+		"Fukuroi"
 	);
 
 	#エリアごとの記録
@@ -97,7 +96,7 @@
 		$talkdate .= "メートルとなっています。";
 		
 		if ($ariadates[$aria]['temp'] <= 13) {
-			$talkdate .= "少し肌寒いですね。今日も頑張りましょう！！";
+			$talkdate .= "少し肌寒いですね。今日も頑張りましょう！！                                  ";
 		};
 		#echo $talkdate;
 		exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdate."' | aplay");
