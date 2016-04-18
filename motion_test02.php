@@ -55,7 +55,7 @@
 		}
 
 		$talkdate .= "の天気は、";
-		$talkdate .= $weather_list[$ariadates[$aria]['weather'];
+		$talkdate .= $weather_list[$ariadates[$aria]['weather']];
 		$talkdate .= "です。現在の気温は、";
 		$talkdate .= $ariadates[$aria]['temp'];
 		$talkdate .= "度です。また、湿度、風速は、";
@@ -67,7 +67,7 @@
 		if ($ariadates[$aria]['temp'] <= 13) {
 			$talkdate .= "少し肌寒いですね。今日も頑張りましょう！！                                  ";
 		};
-		#echo $talkdate;
+		echo $talkdate;
 		exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdate."' | aplay");
 	}
 	exec("php /home/pi/source/aquestalkpi/motion_test03.php");
