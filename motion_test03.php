@@ -1,6 +1,7 @@
 <?php
 	date_default_timezone_set('Asia/Tokyo');
 	$url = "http://api.openweathermap.org/data/2.5/forecast";
+	require "weather_list_array.php";
 	$ariadates = array();
 
 	$context = stream_context_create(
@@ -10,6 +11,9 @@
       		"request_fulluri" => TRUE,
     	)
   	));
+	#time_nunber
+	#9h = 0, 12h = 1, 15h = 3, 18h = 4, 21h = 5
+	$time = 3;
 
 	#取得したいエリアの配列
 	$arias = array(
@@ -24,16 +28,16 @@
 		$ariaurl .= $aria;
 		$ariaurl .= ",jp";
 
-		$json = file_get_contents($ariaurl, false, $context);
+		$json = file_get_contents($ariaurl, false,$context);
 		$json = mb_convert_encoding($json, 'utf8', 'ASCII,JIS,,UTF-8,EUC-JP,SJIS-WIN');
 		$dates = json_decode($json, true);
-		print_r($dates);
 		echo $dates['list'][1]['weather'][0]['description'];;
 		for ($i=0; $i <= 5; $i++) {
 			$ariadates[$aria]['date'][$i] = $dates['list'][$i]['dt_txt'];
 			$ariadates[$aria]['date'][$i] = strtotime($ariadates[$aria]['date'][$i]);
-			$ariadates[$aria]['weather'][$i] = $dates['list'][$i]['weather'][0]['description'];
+			$ariadates[$aria]['weather'][$i] = $dates['list'][$i]['weather'][0]['id'];
 		}
+		print_r($ariadates);
 	}
 
 	exec("amixer cset numid=3 1");
@@ -58,44 +62,10 @@
 				break;
 		}
 		$talkdate .= "の天気は、";
-		$talkdate .= date("H時", $ariadates[$aria]['date'][4]);
+		$talkdate .= date("H時", $ariadates[$aria]['date'][$time]);
 		$talkdate .= "から";
-		switch ($ariadates[$aria]['weather'][4]) {
-			case 'clear sky':
-				$talkdate .= "快晴みたい";
-				break;
-			case 'few clouds':
-				$talkdate .= "雲がかかるよう";
-				break;
-			case 'scattered clouds':
-				$talkdate .= "曇りみたい";
-				break;
-			case 'broken clouds':
-				$talkdate .= "雨雲がかかるよう";
-				break;
-			case 'shower rain':
-				$talkdate .= "にわか雨みたい";
-				break;
-			case 'rain':
-				$talkdate .= "雨みたい";
-				break;
-			case 'thunderstrom':
-				$talkdate .= "雷雨みたい";
-				break;
-			case 'snow':
-				$talkdate .= "雪が降ってるみたい";
-				break;
-			case 'mist':
-				$talkdate .= "霧がかってるみたい";
-				break;
-			default:
-				$talkdate .= "どうやらAPIが頭おかしいみたい";
-				echo $ariadates[$aria]['weather'][4];
-				break;
-		}
-		if ($ariadates[$aria]['weather'][4] == 'thunderstrom' || $ariadates[$aria]['weather'][4] == 'rain' || $ariadates[$aria]['weather'][4] == 'shower rain') {
-			$talkdate .= "どうやら、雨が降るみたいなので傘を忘れないようにしてくださいね                                        ";
-		}
+		$talkdate .= $weather_list[$ariadates[$aria]['weather'][$time]];
+		$talkdate .= "みたいです。";
 		
 		echo $talkdate;
 		exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdate."' | aplay");

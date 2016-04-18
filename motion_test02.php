@@ -1,7 +1,7 @@
 <?php
 	$url = "http://api.openweathermap.org/data/2.5/weather";
 	$ariadates = array();
-
+	require "weather_list_array.php";
 	$context = stream_context_create(
   	array(
     	"http" => array(
@@ -28,7 +28,7 @@
 		$datas = json_decode($json, true);
 
 		$ariadates[$aria]['temp'] = $datas['main']['temp']-273.15;
-		$ariadates[$aria]['weather'] = $datas['weather'][0]['description'];
+		$ariadates[$aria]['weather'] = $datas['weather'][0]['id'];
 		$ariadates[$aria]['humidity'] = $datas['main']['humidity'];
 		$ariadates[$aria]['wind_speed'] = $datas['wind']['speed'];
 		#print_r($ariadates);
@@ -55,38 +55,7 @@
 		}
 
 		$talkdate .= "の天気は、";
-		switch ($ariadates[$aria]['weather']) {
-			case 'clear sky':
-				$talkdate .= "快晴みたい";
-				break;
-			case 'few clouds':
-				$talkdate .= "雲がかかるよう";
-				break;
-			case 'scattered clouds':
-				$talkdate .= "曇りみたい";
-				break;
-			case 'broken clouds':
-				$talkdate .= "雨雲がかかるよう";
-				break;
-			case 'shower rain':
-				$talkdate .= "にわか雨みたい";
-				break;
-			case 'rain':
-				$talkdate .= "雨みたい";
-				break;
-			case 'thunderstrom':
-				$talkdate .= "雷雨みたい";
-				break;
-			case 'snow':
-				$talkdate .= "雪が降ってるみたい";
-				break;
-			case 'mist':
-				$talkdate .= "霧がかってるみたい";
-				break;
-			default:
-				$talkdate .= "どうやらAPIが頭おかしいみたい";
-				break;
-		}
+		$talkdate .= $weather_list[$ariadates[$aria]['weather'][$time]];
 		$talkdate .= "です。現在の気温は、";
 		$talkdate .= $ariadates[$aria]['temp'];
 		$talkdate .= "度です。また、湿度、風速は、";
