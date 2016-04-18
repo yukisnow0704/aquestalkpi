@@ -55,7 +55,7 @@
 		}
 
 		$talkdate .= "の天気は、";
-		$talkdate .= $weather_list[$ariadates[$aria]['weather'][$time]];
+		$talkdate .= $weather_list[$ariadates[$aria]['weather'];
 		$talkdate .= "です。現在の気温は、";
 		$talkdate .= $ariadates[$aria]['temp'];
 		$talkdate .= "度です。また、湿度、風速は、";
