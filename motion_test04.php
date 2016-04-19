@@ -20,15 +20,15 @@
 	$dates = json_decode($json, true);
 
 	print_r($dates);
-#	$talkdate = "最新のニュースをお伝えします。";
+	$talkdate = "最新のニュースをお伝えします。";
 
-#	for ($i=0; $i <= 3; $i++) {
-#		$news[$i] = $dates["responseData"]["feed"]["entries"][$i]["title"];
-#		$talkdate .= $news[$i];
-#		$talkdate .= "。";
-#	}
+	for ($i=0; $i <= 3; $i++) {
+		$news[$i] = $dates["responseData"]["feed"]["entries"][$i]["title"];
+		$talkdate .= $news[$i];
+		$talkdate .= "。";
+	}
 
-#	$talkdate .= "以上です。";
+	$talkdate .= "以上です。";
 
-#	echo $talkdate;
-#	exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdate."' | aplay");
+	echo $talkdate;
+	exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdate."' | aplay");
