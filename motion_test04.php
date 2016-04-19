@@ -23,7 +23,7 @@
 	$json = mb_convert_encoding($json, 'utf8', 'ASCII,JIS,,UTF-8,EUC-JP,SJIS-WIN');
 	$dates = json_decode($json, true);
 
-	print_r($dates);
+	#print_r($dates);
 	$talkdate = "最新のニュースをお伝えします。";
 
 	for ($i=0; $i <= 3; $i++) {
