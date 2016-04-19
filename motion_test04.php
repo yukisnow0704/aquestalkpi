@@ -19,15 +19,16 @@
 	$json = mb_convert_encoding($json, 'utf8', 'ASCII,JIS,,UTF-8,EUC-JP,SJIS-WIN');
 	$dates = json_decode($json, true);
 
-	$talkdate = "最新のニュースをお伝えします。";
+	print_r($dates);
+#	$talkdate = "最新のニュースをお伝えします。";
 
-	for ($i=0; $i <= 3; $i++) {
-		$news[$i] = $dates["responseData"]["feed"]["entries"][$i]["title"];
-		$talkdate .= $news[$i];
-		$talkdate .= "。";
-	}
+#	for ($i=0; $i <= 3; $i++) {
+#		$news[$i] = $dates["responseData"]["feed"]["entries"][$i]["title"];
+#		$talkdate .= $news[$i];
+#		$talkdate .= "。";
+#	}
 
-	$talkdate .= "以上です。";
+#	$talkdate .= "以上です。";
 
-	echo $talkdate;
-	exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdate."' | aplay");
+#	echo $talkdate;
+#	exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdate."' | aplay");
