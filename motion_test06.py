@@ -4,7 +4,7 @@
 
 def reading(sensor):
     import time
-    import RPi.GPIO as GPIO
+	import RPi.GPIO as GPIO
     
     # Disable any warning message such as GPIO pins in use
     GPIO.setwarnings(False)
