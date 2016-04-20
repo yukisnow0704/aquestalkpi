@@ -90,6 +90,8 @@ def reading(sensor):
 						os.system("/home/pi/source/aquestalkpi/motion_test02.sh")
 						sleep(1)
 
+			except KeyboardInterrupt:
+				pass
 		return distance
 		
 		# we're no longer using the GPIO, so tell software we're done
