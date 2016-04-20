@@ -3,12 +3,14 @@ import RPi.GPIO as GPIO
 from time import sleep
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(18, GPIO.IN)
+GPIO.setup(7, GPIO.IN)
+GPIO.setup(8, GPIO.IN)
 
 try:
         while True:        
-                print GPIO.input(18)
-                if GPIO.input(18)==1:
+                print GPIO.input(7)
+                print GPIO.input(8)
+                if GPIO.input(7)==1:
 	                os.system("/home/pi/source/aquestalkpi/motion_test02.sh")
 	            	
                 sleep(1)
