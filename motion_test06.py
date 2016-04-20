@@ -79,8 +79,18 @@ def reading(sensor):
 		
 		# return the distance of an object in front of the sensor in cm
 		if distance < 10:
-			os.system("/home/pi/source/aquestalkpi/motion_test05.py")
-		
+			
+			GPIO.setmode(GPIO.BCM)
+			GPIO.setup(18, GPIO.IN)
+
+			try:
+		        while True:        
+        	        print GPIO.input(18)
+            	    if GPIO.input(18)==1:
+	            	    os.system("/home/pi/source/aquestalkpi/motion_test02.sh")
+	            	
+                sleep(1)
+
 		return distance
 		
 		# we're no longer using the GPIO, so tell software we're done
