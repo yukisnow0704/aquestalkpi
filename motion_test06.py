@@ -1,21 +1,29 @@
-import os
-import RPi.GPIO as GPIO
-from time import sleep
+def reading(sensor):
+	import time
+	import RPi.GPIO as GPIO
+	GPIO.setwarings(False)
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(7, GPIO.IN)
-GPIO.setup(8, GPIO.IN)
+	GPIO.setmode(GPIO.BOARD)
+	TRIG=8
+	ECHO=7
 
-try:
-        while True:        
-                print GPIO.input(7)
-                print GPIO.input(8)
-                if GPIO.input(7)==1:
-	                os.system("/home/pi/source/aquestalkpi/motion_test02.sh")
-	            	
-                sleep(1)
+	if sensor == 0:
+		GPIO.setup(TRIG, GPIO.OUT)
+		GPIO.setup(TRIG, GPIO.IN)
+		GPIO.output(TRIG, GPIO.LOW)
+		time.sleep(0.3)
 
-except KeyboardInterrupt:
-        pass
+		GPIO.output(TRIG, True)
+		time.sleep(0.00001)
+		GPIO.output(TRIG, False)
+		while GPIO.input(ECHO)	:
+			signaloff = time.time()
 
-GPIO.cleanup()
+		timespassed = signalon - signaloff
+		distance = timespassed * 17000
+		return distance
+		GPIO.cleanup()
+	else:
+		print "Incorrect usonic () function varible."
+
+	print readign(0)
