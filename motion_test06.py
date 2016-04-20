@@ -7,6 +7,7 @@
 def reading(sensor):
 	import time
 	import RPi.GPIO as GPIO
+	import os
 	
 	# Disable any warning message such as GPIO pins in use
 	GPIO.setwarnings(False)
@@ -77,6 +78,9 @@ def reading(sensor):
 		distance = timepassed * 17000
 		
 		# return the distance of an object in front of the sensor in cm
+		if distance < 10:
+			os.system("/home/pi/source/aquestalkpi/motion_test05.py")
+		
 		return distance
 		
 		# we're no longer using the GPIO, so tell software we're done
