@@ -3,7 +3,7 @@
 # GPIO input = the pin that's connected to "Echo" on the sensor
 
 def reading(sensor):
-    import time
+	import time
 	import RPi.GPIO as GPIO
     
     # Disable any warning message such as GPIO pins in use
