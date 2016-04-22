@@ -87,6 +87,10 @@ def reading(sensor):
 		print "Incorrect usonic() function varible."
 
 result = reading(0)
+import time
+import RPi.GPIO as GPIO
+import os
+
 
 if result < 10:
 	GPIO.setmode(GPIO.BCM)
@@ -101,6 +105,6 @@ if result < 10:
 	except KeyboardInterrupt:
 		pass
 
-	GPIO.cleanup()
+		GPIO.cleanup()
 else:
 	print result
