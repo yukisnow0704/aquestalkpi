@@ -1,0 +1,5 @@
+julius memo
+
+ALSADEV="plughw:1,0" julius -C ~/julius-4.3.1/julius-kits/dictation-kit-v4.3.1-linux/main.jconf -C ~/julius-4.3.1/julius-kits/dictation-kit-v4.3.1-linux/am-gmm.jconf -nostrip
+
+LSADEV="plughw:1,0" julius -C ~/julius-4.3.1/julius-kits/dictation-kit-v4.3.1-linux/kudo_ken.jconf
