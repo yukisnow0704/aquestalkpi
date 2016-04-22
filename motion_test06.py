@@ -98,9 +98,9 @@ if result < 10:
 			if GPIO.input(18)==1:
 				os.system("/home/pi/source/aquestalkpi/motion_test02.sh")
 
-		except KeyboardInterrupt:
-			pass
+	except KeyboardInterrupt:
+		pass
 
-		GPIO.cleanup()
+	GPIO.cleanup()
 else:
 	print result
