@@ -15,5 +15,7 @@ def main():
         print (recv_data)
         if recv_data.find('WHYPO') != -1:
             print (recv_data)
+            if recv_data.find(u'天気') != -1:
+                print("天気")
 if __name__ == '__main__':
     main()
