@@ -1,18 +1,28 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import socket
-import requests
+#import serial
+import xml.etree.ElementTree as ET
+import subprocess
+import time
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect(('localhost', 10500))
+host = 'localhost'
+port = 10500
+ 
+# port setting
+SERVO = 4
 
-sf = s.makefile('')
+clientsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+clientsock.connect((host, port))
+
+sf = clientsock.makefile('rb')
 
 while True:
-	line = sf.readline().decode('utf-8')
-	if line.find(line) != -1:
-		print line
-		if line.find(u'天気予報') != -1 :
-			print ("tenki")
-		if line.find(u'ニュース') != -1 :
-			print ("news")
+    line = sf.readline().decode('utf-8')
+    if line.find('WHYPO') != -1:
+        print line
+        if line.find(u'天気') != -1:
+            print("miku")
+        elif line.find(u'天気予報') != -1:
+            print("hello")
+            hello()
