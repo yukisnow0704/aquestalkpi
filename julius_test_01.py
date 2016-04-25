@@ -13,5 +13,5 @@ while True:
     line = sf.readline().decode('utf-8')
     if line.find('WHYPO') != -1:
     	print line
-       	if line.find("天気") != -1:
+       	if line.find(u"天気") != -1:
         	print 'call WATSON'
