@@ -12,12 +12,13 @@ def main():
 
     while True:
         recv_data = sock.recv(bufsize)
+        recv_data.encode('utf-8')
         print (recv_data)
         if recv_data.find('WHYPO') != -1:
             print (recv_data)
-            if recv_data.find('天気') != -1:
+            if recv_data.find(u'天気') != -1:
                 print("天気")
-            if recv_data.find('ニュース') != -1:
+            if recv_data.find(u'ニュース') != -1:
                 print("ニュース")
 if __name__ == '__main__':
     main()
