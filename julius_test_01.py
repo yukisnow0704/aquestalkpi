@@ -9,7 +9,7 @@ s.connect(('localhost', 10500))
 
 sf = s.makefile('')
 
-reWATSON = re.compile(r'WHYPO WORD="WATSON" .* CM="(\d\.\d*)"')
+reWATSON = re.compile(r'WHYPO WORD="天気" .* CM="(\d\.\d*)"')
 
 while True:
     line = sf.readline().decode('utf-8')
