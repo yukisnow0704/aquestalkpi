@@ -10,7 +10,6 @@ def main():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.connect((host,port))
     while True:
-        recv_data = sock.recv(bufsize)
         print (recv_data)
 if __name__ == '__main__':
     main()
