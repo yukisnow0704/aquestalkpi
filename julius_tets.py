@@ -12,7 +12,7 @@ def main():
     sock.connect((host,port))
 
     while True:
-        recv_data = sock.recv(bufsize).decode('utf-8')
+        recv_data = sock.recv(bufsize)
         if recv_data.find('WHYPO') != -1:
             print (recv_data)
             if recv_data.find(u'天気') != -1:
