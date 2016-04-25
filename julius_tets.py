@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 from __future__ import print_function
 import socket
 from contextlib import closing
@@ -14,7 +15,7 @@ def main():
         recv_data = sock.recv(bufsize).decode('utf-8')
         if recv_data.find('WHYPO') != -1:
             print (recv_data)
-            if recv_data.find(r'天気') != -1:
-                print("天気")
+            if recv_data.find(u'天気') != -1:
+                print(u"天気")
 if __name__ == '__main__':
     main()
