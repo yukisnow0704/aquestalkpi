@@ -14,9 +14,9 @@ def main():
         print (recv_data)
         if recv_data.find('WHYPO') != -1:
             print recv_data
-            if line.find(u'天気') != -1:
+            if recv_data.find(u'天気') != -1:
                 print("天気")
-            if line.find(u'ニュース') != -1:
+            if recv_data.find(u'ニュース') != -1:
                 print("ニュース")
 if __name__ == '__main__':
     main()
