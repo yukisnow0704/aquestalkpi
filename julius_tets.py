@@ -9,12 +9,12 @@ s.connect(('localhost', 10500))
 
 sf = s.makefile('')
 
-reWATSON = re.compile(r'WHYPO WORD="天気" .* CM="(\d\.\d*)"')
+reWATSON = re.compile(r'WHYPO WORD="天気予報" .* CM="(\d\.\d*)"')
 
 while True:
-    line = sf.readline().decode('utf-8')
-    tmp = reWATSON.search( line )
-    if tmp:
-        print line
-        if float(tmp.group(1)) > 0.8:
-                print 'call WATSON'
+	line = sf.readline().decode('utf-8')
+	tmp = reWATSON.search( line )
+	if tmp:
+		print line
+		if float(tmp.group(1)) > 0.8:
+			print 'call WATSON'
