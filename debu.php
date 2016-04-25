@@ -6,7 +6,7 @@
 			$talkdate = "長澤くんは、";
 			exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdate."' | aplay");
 		}
-		$talkdate = "天才、";
+		$talkdate = "てんさいだとでも思った？、";
 		echo $talkdate;
 		exec("/home/pi/aquestalkpi/AquesTalkPi -s 300 '".$talkdate."' | aplay");
 	}
