@@ -1,28 +1,16 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+from __future__ import print_function
 import socket
-#import serial
-import xml.etree.ElementTree as ET
-import subprocess
-import time
+from contextlib import closing
+import commands
 
-host = 'localhost'
-port = 10500
- 
-# port setting
-SERVO = 4
-
-clientsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-clientsock.connect((host, port))
-
-sf = clientsock.makefile('rb')
-
-while True:
-    line = sf.readline().decode('utf-8')
-    if line.find('WHYPO') != -1:
-        print line
-        if line.find(u'天気') != -1:
-            print("miku")
-        elif line.find(u'天気予報') != -1:
-            print("hello")
-            hello()
+def main():
+    host = 'localhost'
+    port = 10500
+    bufsize = 4096
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.connect((host,port))
+    while True:
+        recv_data = sock.recv(bufsize)
+        print (recv_data)
+if __name__ == '__main__':
+    main()
