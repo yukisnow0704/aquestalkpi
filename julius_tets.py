@@ -10,7 +10,6 @@ sf = s.makefile('')
 
 while True:
 	line = sf.readline().decode('utf-8')
-	tmp = reWord.search( line )
 	if line.find(line) != -1:
 		print line
 		if line.find(u'天気予報') != -1 :
