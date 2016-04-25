@@ -2,19 +2,18 @@
 # -*- coding: utf-8 -*-
 import socket
 import requests
-import re
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect(('localhost', 10500))
 
 sf = s.makefile('')
 
-reWATSON = re.compile(r'WHYPO WORD="天気予報" .* CM="(\d\.\d*)"')
-
 while True:
 	line = sf.readline().decode('utf-8')
-	tmp = reWATSON.search( line )
-	if tmp:
+	tmp = reWord.search( line )
+	if line.find(line) != -1:
 		print line
-		if float(tmp.group(1)) > 0.8:
-			print 'call WATSON'
+		if line.find(u'天気予報') != -1 :
+			print ("tenki")
+		if line.find(u'ニュース') != -1 :
+			print ("news")
