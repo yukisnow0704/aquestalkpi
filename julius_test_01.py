@@ -17,9 +17,9 @@ while True:
     	print line
        	if line.find(u"天気予報") != -1:
         	print 'call tenki'
-        	time.sleep(3.0)
         	os.system("/home/pi/source/aquestalkpi/motion_test02.sh")
         if line.find(u"ニュース") != -1:
         	print 'call news'
-        	time.sleep(3.0)
         	os.system("/home/pi/source/aquestalkpi/motion_test04.sh")
+        if :
+        	pass
