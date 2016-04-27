@@ -1,5 +1,5 @@
 <?php
-	exec("amixer cset numid=3 1")
+	exec("amixer cset numid=3 1");
 	$talkmain;
 	$talks = array(
 		"私はテスターです興味を持っていただけたら嬉しいです。",
@@ -9,5 +9,5 @@
 	foreach ($talks as $talk){
 		$talkmain .= $talk;
 	}
-	#echo "./AquesTalkPi '".$talkmain."' | aplay";
+	echo "./AquesTalkPi '".$talkmain."' | aplay";
 	exec("/home/pi/aquestalkpi/AquesTalkPi -v f2'".$talkmain."' | aplay");
