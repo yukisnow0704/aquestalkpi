@@ -9,8 +9,8 @@ import subprocess
 import shlex
 import time
 
-julius_path = '/usr/local/bin/julius'
-jconf_path = '/home/pi/julius-kits/dictation-kit-v4.3.1-linux/org.jconf'
+julius_path = 'ALSADEV="plughw:1,0" julius'
+jconf_path = '/home/pi/julius-4.3.1/julius-kits/dictation-kit-v4.3.1-linux/kudo_ken.jconf'
 julius = None
 julius_socket = None
 
