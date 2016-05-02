@@ -61,7 +61,7 @@ def delete_socket(s):
 def invoke_julius_set():
     julius = invoke_julius()
     julius_socket = create_socket()
-    sf = julius_socket.makefile('rb')
+    sf = julius_socket.makefile('')
     return (julius, julius_socket, sf)
 
 
