@@ -9,8 +9,8 @@ import subprocess
 import shlex
 import time
 
-julius_path = 'ALSADEV="plughw:1,0" julius'
-jconf_path = '~/julius-4.3.1/julius-kits/dictation-kit-v4.3.1-linux/kudo_ken.jconf'
+julius_path = '/usr/local/bin/julius'
+jconf_path = '/home/pi/julius-kits/dictation-kit-v4.3.1-linux/org.jconf'
 julius = None
 julius_socket = None
 
@@ -18,18 +18,12 @@ julius_socket = None
 def invoke_julius():
     print 'INFO : invoke julius'
     args = julius_path + ' -C ' + jconf_path + ' -module '
-    p = subprocess.Popen(
-            shlex.split(args),
-            stdin=None,
-            stdout=None,
-            stderr=None
-        )
+    p = subprocess.Popen(shlex.split(args),stdin=None,stdout=None,stderr=None)
     print 'INFO : invoke julius complete.'
     print 'INFO : wait 2 seconds.'
     time.sleep(3.0)
     print 'INFO : invoke julius complete'
     return p
-
 
 def kill_julius(julius):
     print 'INFO : terminate julius'
