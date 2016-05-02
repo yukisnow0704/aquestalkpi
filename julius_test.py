@@ -82,12 +82,14 @@ def main():
             julius, julius_socket, sf = invoke_julius_set()
         else:
             line = sf.readline().decode('utf-8')
-            print line
-            tmp = reWATSON.search(line)
-            if tmp:
-                # print line
-                if float(tmp.group(1)) > 0.8:
-                    print 'WARN : DIE julius, call WATSON'
+            if line.find('WHYPO') != -1:
+                print line
+                if line.find(u"天気予報") != -1:
+                    print 'call tenki'
+                    os.system("/home/pi/source/aquestalkpi/motion_test02.sh")
+                if line.find(u"ニュース") != -1:
+                    print 'call news'
+                    os.system("/home/pi/source/aquestalkpi/motion_test04.sh")
                     kill_julius(julius)
                     delete_socket(julius_socket)
                     print '====================================='
