@@ -18,6 +18,7 @@ julius_socket = None
 def invoke_julius():
     print 'INFO : invoke julius'
     args = julius_path + ' -C ' + jconf_path + ' -module '
+    pring args
     p = subprocess.Popen(shlex.split(args), shell=True)
     print 'INFO : invoke julius complete.'
     print 'INFO : wait 2 seconds.'
