@@ -74,7 +74,7 @@ def main():
     # ###
     # # re definition
     # ###
-    reWATSON = re.compile(r'WHYPO WORD="WATSON" .* CM="(\d\.\d*)"')
+    reWATSON = re.compile(r'WHYPO WORD="天気予報" .* CM="(\d\.\d*)"')
 
     while True:
         if julius.poll() is not None:   # means , julius dead
