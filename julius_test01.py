@@ -5,6 +5,7 @@ import requests
 import re
 import os
 import time
+import subprocess
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect(('localhost', 10500))
