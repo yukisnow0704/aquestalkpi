@@ -19,7 +19,7 @@ def invoke_julius():
     print 'INFO : invoke julius'
     args = julius_path + ' -C ' + jconf_path + ' -module '
     print args
-    p = subprocess.Popen(shlex.split(args), shell=True)
+    p = subprocess.call(args)
     print 'INFO : invoke julius complete.'
     print 'INFO : wait 2 seconds.'
     time.sleep(4.0)
