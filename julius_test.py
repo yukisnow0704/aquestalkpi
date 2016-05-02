@@ -21,7 +21,7 @@ def invoke_julius():
     p = subprocess.Popen(shlex.split(args), shell=True)
     print 'INFO : invoke julius complete.'
     print 'INFO : wait 2 seconds.'
-    time.sleep(3.0)
+    time.sleep(4.0)
     print 'INFO : invoke julius complete'
     return p
 
