@@ -10,7 +10,7 @@ import shlex
 import time
 
 julius_path = 'ALSADEV="plughw:1,0" julius'
-jconf_path = '~/julius-4.3.1/julius-kits/dictation-kit-v4.3.1-linux/main.jconf -C ~/julius4.3.1/julius-kits/dictation-kit-v4.3.1-linux/am-gmm.jconf'
+jconf_path = '~/julius-4.3.1/julius-kits/dictation-kit-v4.3.1-linux/main.jconf -C ~/julius-4.3.1/julius-kits/dictation-kit-v4.3.1-linux/am-gmm.jconf'
 julius = None
 julius_socket = None
 
