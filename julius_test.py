@@ -91,7 +91,7 @@ def main():
                     if line.find(u"ニュース") != -1:
                         print 'call news'
                         os.system("/home/pi/source/aquestalkpi/motion_test04.sh")
-                    
+
                     kill_julius(julius)
                     delete_socket(julius_socket)
 
