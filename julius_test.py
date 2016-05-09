@@ -84,16 +84,17 @@ def main():
             line = sf.readline().decode('utf-8')
             if line.find('WHYPO') != -1:
                 print line
-                if line.find(u"天気予報") != -1:
-                    print 'call tenki'
-                    kill_julius(julius)
-                    delete_socket(julius_socket)
-                    os.system("/home/pi/source/aquestalkpi/motion_test02.sh")
-                if line.find(u"ニュース") != -1:
-                    print 'call news'
-                    kill_julius(julius)
-                    delete_socket(julius_socket)
-                    os.system("/home/pi/source/aquestalkpi/motion_test04.sh")
+                if float(line.group(1)) > 0.8:
+                    if line.find(u"天気予報") != -1:
+                        print 'call tenki'
+                        kill_julius(julius)
+                        delete_socket(julius_socket)
+                        os.system("/home/pi/source/aquestalkpi/motion_test02.sh")
+                    if line.find(u"ニュース") != -1:
+                        print 'call news'
+                        kill_julius(julius)
+                        delete_socket(julius_socket)
+                        os.system("/home/pi/source/aquestalkpi/motion_test04.sh")
 
     print 'WARN : while loop breaked'
     print 'INFO : exit'
