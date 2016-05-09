@@ -88,12 +88,13 @@ def main():
                     if line.find(u"天気予報") != -1:
                         print 'call tenki'
                         os.system("/home/pi/source/aquestalkpi/motion_test02.sh")
+                        kill_julius(julius)
+                        delete_socket(julius_socket)
                     if line.find(u"ニュース") != -1:
                         print 'call news'
                         os.system("/home/pi/source/aquestalkpi/motion_test04.sh")
-
-                    kill_julius(julius)
-                    delete_socket(julius_socket)
+                        kill_julius(julius)
+                        delete_socket(julius_socket)
 
     print 'WARN : while loop breaked'
     print 'INFO : exit'
