@@ -94,7 +94,7 @@ def main():
                 kill_julius(julius)
                 delete_socket(julius_socket)
                 print 'call news'
-                os.system("/home/pi/source/aquestalkpi/julius_demo01/motion_test02.sh")
+                os.system("/home/pi/source/aquestalkpi/julius_demo01/motion_test04.sh")
 
     print 'WARN : while loop breaked'
     print 'INFO : exit'
