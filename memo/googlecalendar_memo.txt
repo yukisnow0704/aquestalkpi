@@ -1,0 +1,71 @@
+array(9) {
+  ["kind"]=>
+  string(15) "calendar#events"
+  ["etag"]=>
+  string(18) ""1462844926750000""
+  ["summary"]=>
+  string(9) "kudo_test"
+  ["description"]=>
+  string(33) "研究用テストカレンダー"
+  ["updated"]=>
+  string(24) "2016-05-10T01:48:46.750Z"
+  ["timeZone"]=>
+  string(10) "Asia/Tokyo"
+  ["accessRole"]=>
+  string(6) "reader"
+  ["defaultReminders"]=>
+  array(0) {
+  }
+  ["items"]=>
+  array(1) {
+    [0]=>
+    array(14) {
+      ["kind"]=>
+      string(14) "calendar#event"
+      ["etag"]=>
+      string(18) ""2925689504006000""
+      ["id"]=>
+      string(26) "6st0spjid1j0oua8ss7s4bd4lg"
+      ["status"]=>
+      string(9) "confirmed"
+      ["htmlLink"]=>
+      string(116) "https://www.google.com/calendar/event?eid=NnN0MHNwamlkMWowb3VhOHNzN3M0YmQ0bGcgaGFyYnRkZXZwNTJkZmk0ZWY0a2hicG9xZDBAZw"
+      ["created"]=>
+      string(24) "2016-05-10T01:45:51.000Z"
+      ["updated"]=>
+      string(24) "2016-05-10T01:45:52.003Z"
+      ["summary"]=>
+      string(9) "テスト"
+      ["creator"]=>
+      array(2) {
+        ["email"]=>
+        string(22) "yukisnow0704@gmail.com"
+        ["displayName"]=>
+        string(12) "伊藤祐輝"
+      }
+      ["organizer"]=>
+      array(3) {
+        ["email"]=>
+        string(52) "harbtdevp52dfi4ef4khbpoqd0@group.calendar.google.com"
+        ["displayName"]=>
+        string(9) "kudo_test"
+        ["self"]=>
+        bool(true)
+      }
+      ["start"]=>
+      array(1) {
+        ["dateTime"]=>
+        string(25) "2016-05-12T12:00:00+09:00"
+      }
+      ["end"]=>
+      array(1) {
+        ["dateTime"]=>
+        string(25) "2016-05-12T14:00:00+09:00"
+      }
+      ["iCalUID"]=>
+      string(37) "6st0spjid1j0oua8ss7s4bd4lg@google.com"
+      ["sequence"]=>
+      int(0)
+    }
+  }
+}

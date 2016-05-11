@@ -1,1 +1,0 @@
-php /home/pi/source/aquestalkpi/motion_test02.php
