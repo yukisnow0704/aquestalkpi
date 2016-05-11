@@ -90,10 +90,11 @@ def main():
                 os.system("/home/pi/source/aquestalkpi/julius_demo01/motion_test02.sh")
 
             if line.find(u"ニュース") != -1:
-                print 'call news'
+                
                 kill_julius(julius)
                 delete_socket(julius_socket)
-                os.system("/home/pi/source/aquestalkpi/julius_demo01/motion_test04.sh")
+                print 'call news'
+                os.system("/home/pi/source/aquestalkpi/julius_demo01/motion_test02.sh")
 
     print 'WARN : while loop breaked'
     print 'INFO : exit'

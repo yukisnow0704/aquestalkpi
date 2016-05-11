@@ -1,6 +1,4 @@
 <?php
-	
-	define('WP_MEMORY_LIMIT', '64M');
 	$url = "https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=";
 	$url .= "https://goo.gl/6SdYiQ";
 	# https://goo.gl/o2IFFc テクノロジー関係
