@@ -26,4 +26,21 @@ $results = file_get_contents($url, false, $context);
 
 $json = json_decode($results, true);
 
-var_dump($json);
+$plan_list = array();
+
+print_r($json);
+
+for ($i=0; $i < 9; $i++) {
+	$plan_list['items'][$i]['name'] = $json['items'][$i]['summary'];
+	$plan_list['items'][$i]['start_date'] = $json['items'][$i]['start']['dateTime'];
+	$plan_list['items'][$i]['end_date'] = $json['items'][$i]['end']['dateTime'];
+	$plan_list['items'][$i]['user_email'] = $json['items'][$i]['creator']['email'];
+	$plan_list['items'][$i]['user_name'] = $json['items'][$i]['creator']['displayName'];
+}
+
+for ($i=0; $i < 9; $i++) { 
+	if ($plan_list['items'][$i]['name'] = "") {
+		echo "string";
+	}
+}
+

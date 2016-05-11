@@ -72,4 +72,4 @@
 		echo $talkdate;
 		exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdate."' | aplay");
 	}
-	exec("php /home/pi/source/aquestalkpi/motion_test03.php");
+	exec("php /home/pi/source/aquestalkpi/julius_demo01/motion_test03.php");
