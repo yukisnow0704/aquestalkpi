@@ -9,7 +9,11 @@ $context = stream_context_create(
     	"http" => array(
       		"proxy" => "tcp://133.88.120.1:8585",
       		"request_fulluri" => TRUE,
-	)
+	),
+    	"ssl" => array(
+    		'verify_peer' => false,
+    		'verify-peer_name' => false
+    )
 ));
 
 $t = mktime(0, 0, 0, 4, 1, 2016);
