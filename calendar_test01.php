@@ -53,8 +53,7 @@ for ($i=0; $i < count($plan_list); $i++) {
 		$talkdata .= '不明な用事';
 	}
 	else{
-		$talkdata .= $plan_list
-		[$i]['name'];
+		$talkdata .= $plan_list[$i]['name'];
 	}
 
 	echo $talkdata;
