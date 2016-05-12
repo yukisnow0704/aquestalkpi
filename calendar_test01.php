@@ -26,7 +26,7 @@ $params[] = 'timeMax=' .urlencode(date('c', $t2));
 
 $url = API_URL.'&'.implode('&', $params);
 
-$results = file_get_contents($url, false);#, $context);
+$results = file_get_contents($url, false, $context);
 
 $json = json_decode($results, true);
 
