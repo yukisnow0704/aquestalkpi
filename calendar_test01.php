@@ -22,7 +22,7 @@ $params[] = 'timeMax=' .urlencode(date('c', $t2));
 
 $url = API_URL.'&'.implode('&', $params);
 
-$results = file_get_contents($url, false, $context);
+$results = file_get_contents($url, false);#, $context);
 
 $json = json_decode($results, true);
 
@@ -30,17 +30,29 @@ $plan_list = array();
 
 print_r($json);
 
-for ($i=0; $i < 9; $i++) {
-	$plan_list['items'][$i]['name'] = $json['items'][$i]['summary'];
-	$plan_list['items'][$i]['start_date'] = $json['items'][$i]['start']['dateTime'];
-	$plan_list['items'][$i]['end_date'] = $json['items'][$i]['end']['dateTime'];
-	$plan_list['items'][$i]['user_email'] = $json['items'][$i]['creator']['email'];
-	$plan_list['items'][$i]['user_name'] = $json['items'][$i]['creator']['displayName'];
+for ($i=0; $i < count($json['items']); $i++) {
+	$plan_list[$i]['name'] = $json['items'][$i]['summary'];
+	$plan_list[$i]['start_date'] = $json['items'][$i]['start']['dateTime'];
+	$plan_list[$i]['end_date'] = $json['items'][$i]['end']['dateTime'];
+	$plan_list[$i]['user_email'] = $json['items'][$i]['creator']['email'];
+	$plan_list[$i]['user_name'] = $json['items'][$i]['creator']['displayName'];
 }
 
-for ($i=0; $i < 9; $i++) { 
-	if ($plan_list['items'][$i]['name'] = "") {
-		echo "string";
+print_r($plan_list);
+
+for ($i=0; $i < count($plan_list); $i++) {
+	$talkdata = '';
+	$talkdata .= $plan_list[$i]['user_name'];
+	$talkdata .= $plan_list[$i]['start_date'];
+	$talkdata .= $plan_list[$i]['end_date'];
+	if ($plan_list[$i]['name'] == '') {
+		$talkdata .= '不明な用事';
 	}
-}
+	else{
+		$talkdata .= $plan_list
+		[$i]['name'];
+	}
 
+	echo $talkdata;
+	exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdate."' | aplay");
+}
