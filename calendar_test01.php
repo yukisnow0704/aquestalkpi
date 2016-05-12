@@ -47,15 +47,18 @@ print_r($plan_list);
 for ($i=0; $i < count($plan_list); $i++) {
 	$talkdate = '';
 	$talkdate .= $plan_list[$i]['user_name'];
-	$talkdate .= date("H時", $plan_list[$i]['start_date']);
+	$talkdate .= 'さんは、';
+	$talkdate .= date("日H時", $plan_list[$i]['start_date']);
+	$talkdate .= 'から';
 	$talkdate .= date("H時", $plan_list[$i]['end_date']);
+	$talkdate .= 'まで';
 	if ($plan_list[$i]['name'] == '') {
 		$talkdate .= '不明な用事';
 	}
 	else{
 		$talkdate .= $plan_list[$i]['name'];
 	}
-
+	$talkdate .= '、だそうです。';
 	echo $talkdate;
 	exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdate."' | aplay");
 }
