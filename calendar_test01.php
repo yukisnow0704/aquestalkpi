@@ -36,8 +36,8 @@ print_r($json);
 
 for ($i=0; $i < count($json['items']); $i++) {
 	$plan_list[$i]['name'] = $json['items'][$i]['summary'];
-	$plan_list[$i]['start_date'] = $json['items'][$i]['start']['dateTime'];
-	$plan_list[$i]['end_date'] = $json['items'][$i]['end']['dateTime'];
+	$plan_list[$i]['start_date'] = strtotime($json['items'][$i]['start']['dateTime']);
+	$plan_list[$i]['end_date'] = strtotime($json['items'][$i]['end']['dateTime']);
 	$plan_list[$i]['user_email'] = $json['items'][$i]['creator']['email'];
 	$plan_list[$i]['user_name'] = $json['items'][$i]['creator']['displayName'];
 }
@@ -47,8 +47,8 @@ print_r($plan_list);
 for ($i=0; $i < count($plan_list); $i++) {
 	$talkdata = '';
 	$talkdata .= $plan_list[$i]['user_name'];
-	$talkdata .= $plan_list[$i]['start_date'];
-	$talkdata .= $plan_list[$i]['end_date'];
+	$talkdata .= date("H時", $plan_list[$i]['start_date']);
+	$talkdata .= date("H時", $plan_list[$i]['end_date']);
 	if ($plan_list[$i]['name'] == '') {
 		$talkdata .= '不明な用事';
 	}
