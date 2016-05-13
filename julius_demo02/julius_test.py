@@ -72,12 +72,14 @@ def main():
                 if line.find(u"予報") != -1:
                     print 'call weather02'
                     os.system("php weather02.php")
+                time.sleep(4.0)
             
             if line.find(u"ニュース") != -1:
                 kill_julius(julius)
                 delete_socket(julius_socket)
                 print 'call news'
                 os.system("php news.php")
+                time.sleep(4.0)
 
             if line.find(u"予定") != -1:
                 if line.find(u"伊藤祐輝") != -1:
@@ -88,7 +90,8 @@ def main():
                     f.write("伊藤祐輝")
                     f.close()
                     os.system("php calendar_test01.php")
-            time.sleep(4.0)
+                    time.sleep(4.0)
+
     print 'WARN : while loop breaked'
     print 'INFO : exit'
 
