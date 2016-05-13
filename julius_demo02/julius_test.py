@@ -9,7 +9,7 @@ import subprocess
 import shlex
 import time
 
-julius_path = 'julius'
+julius_path = 'ALSADEV="plughw:1,0" julius'
 jconf_path = '~/julius-4.3.1/julius-kits/dictation-kit-v4.3.1-linux/kudo_ken.jconf'
 julius = None
 julius_socket = None
@@ -32,6 +32,7 @@ def kill_julius(julius):
 def create_socket():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect(('localhost', 10500))
+    os.system('/home/pi/aquestalkpi/AquesTalkPi "ご命令ください" | aplay')
     return s
 
 
@@ -57,7 +58,6 @@ def main():
         if julius.poll() is not None:   # means , julius dead
             delete_socket(julius_socket)
             julius, julius_socket, sf = invoke_julius_set()
-            os.system('/home/pi/aquestalkpi/AquesTalkPi "ご命令ください" | aplay')
         else:
             line = sf.readline().decode('utf-8')
             print line
@@ -89,14 +89,13 @@ def main():
                     f.write("伊藤祐輝")
                     f.close()
                     os.system("php calendar_test01.php")
-
+            time.sleep(4.0)
     print 'WARN : while loop breaked'
     print 'INFO : exit'
 
 
 if __name__ == '__main__':
     try:
-        os.system('ALSADEV="plughw:1,0"')
         main()
     except KeyboardInterrupt:
         print 'Interrupted. Exit sequence start..'
