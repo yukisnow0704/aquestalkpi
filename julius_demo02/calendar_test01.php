@@ -5,9 +5,6 @@ define('API_KEY','AIzaSyB_Ak2uHbz_C8clmDG2olzz_5oEAKCa8PA');
 define('API_URL', 'https://www.googleapis.com/calendar/v3/calendars/'.CALENDAR_ID.'/events?key='.API_KEY.'&singleEvents=true');
 $tmp_fp = fopen('tmp.txt', 'r');
 $tmp_name = fgets($tmp_fp);
-
-echo $tmp_name;
-
 fclose($tmp_fp);
 
 $context = stream_context_create(
@@ -32,7 +29,7 @@ $params[] = 'timeMax=' .urlencode(date('c', $t2));
 
 $url = API_URL.'&'.implode('&', $params);
 
-$results = file_get_contents($url, false);#, $context);
+$results = file_get_contents($url, false, $context);
 
 $json = json_decode($results, true);
 
@@ -47,8 +44,6 @@ for ($i=0; $i < count($json['items']); $i++) {
 	$plan_list[$i]['user_email'] = $json['items'][$i]['creator']['email'];
 	$plan_list[$i]['user_name'] = $json['items'][$i]['creator']['displayName'];
 }
-
-print_r($plan_list);
 
 for ($i=0; $i < count($plan_list); $i++) {
 	if ($plan_list[$i]['user_name'] == $tmp_name) {
