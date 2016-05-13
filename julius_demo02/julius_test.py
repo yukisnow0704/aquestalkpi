@@ -32,7 +32,6 @@ def kill_julius(julius):
 def create_socket():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect(('localhost', 10500))
-    os.system('/home/pi/aquestalkpi/AquesTalkPi "ご命令ください" | aplay')
     return s
 
 
