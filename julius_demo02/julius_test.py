@@ -59,6 +59,7 @@ def main():
             delete_socket(julius_socket)
             os.system('/home/pi/aquestalkpi/AquesTalkPi "ちょっと待ってね" | aplay')
             julius, julius_socket, sf = invoke_julius_set()
+            time.sleep(2.0)
             os.system('/home/pi/aquestalkpi/AquesTalkPi "ご命令ください" | aplay')
         else:
             line = sf.readline().decode('utf-8')
