@@ -9,7 +9,7 @@ import subprocess
 import shlex
 import time
 
-julius_path = 'ALSADEV="plughw:1,0" julius'
+julius_path = 'julius'
 jconf_path = '~/julius-4.3.1/julius-kits/dictation-kit-v4.3.1-linux/kudo_ken.jconf'
 julius = None
 julius_socket = None
@@ -146,6 +146,7 @@ def main():
 
 if __name__ == '__main__':
     try:
+        os.system('export ALSADEV="plughw:1,0"')
         main()
     except KeyboardInterrupt:
         print 'Interrupted. Exit sequence start..'
