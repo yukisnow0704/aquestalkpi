@@ -22,15 +22,16 @@ $context = stream_context_create(
     )
 ));
 
-$t = mktime(0, 0, 0, 4, 1, 2016);
-$t2 = mktime(0, 0, 0, 3, 31, 2017);
+$t = date("c");
+$t2 = date("c",strtotime("+7 day"));
 
 $params = array();
 $params[] = 'orderBy=startTime';
-$params[] = 'timeMin=' .urlencode(date('c', $t));
-$params[] = 'timeMax=' .urlencode(date('c', $t2));
+$params[] = 'timeMin=' .urlencode($t);
+$params[] = 'timeMax=' .urlencode($t2);
 
 $url = API_URL.'&'.implode('&', $params);
+echo $url;
 
 $results = file_get_contents($url, false);#, $context);
 
@@ -69,4 +70,8 @@ for ($i=0; $i < count($plan_list); $i++) {
 		echo $talkdate;
 		exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdate."' | aplay");
 	}
+}
+
+if (count($plan_list) == 0) {
+	exec("/home/pi/aquestalkpi/AquesTalkPi '１週間特に予定はありません。' | aplay");
 }

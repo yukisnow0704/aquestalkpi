@@ -20,7 +20,6 @@ def invoke_julius():
     args = julius_path + ' -C ' + jconf_path + ' -module '
     print args
     p = subprocess.Popen(args, shell=True)
-    os.system('/home/pi/aquestalkpi/AquesTalkPi "ちょっと待ってね" | aplay')
     time.sleep(4.0)
     return p
 
@@ -56,7 +55,9 @@ def main():
     while True:
         if julius.poll() is not None:   # means , julius dead
             delete_socket(julius_socket)
+            os.system('/home/pi/aquestalkpi/AquesTalkPi "ちょっと待ってね" | aplay')
             julius, julius_socket, sf = invoke_julius_set()
+            os.system('/home/pi/aquestalkpi/AquesTalkPi "ご命令ください" | aplay')
         else:
             line = sf.readline().decode('utf-8')
             print line
@@ -82,7 +83,7 @@ def main():
                 time.sleep(4.0)
 
             if line.find(u"予定") != -1:
-                if line.find(u"伊藤祐輝") != -1:
+                if line.find(u"伊藤") != -1:
                     print 'call yuki-itou plan'
                     kill_julius(julius)
                     delete_socket(julius_socket)
@@ -91,6 +92,51 @@ def main():
                     f.close()
                     os.system("php calendar_test01.php")
                     time.sleep(4.0)
+                if line.find(u"小山") != -1:
+                    print 'call koyama plan'
+                    kill_julius(julius)
+                    delete_socket(julius_socket)
+                    f = open('tmp.txt','w')
+                    f.write("koyama ryoma")
+                    f.close()
+                    os.system("php calendar_test01.php")
+                    time.sleep(4.0)
+                if line.find(u"怜真") != -1:
+                    print 'call koyama plan'
+                    kill_julius(julius)
+                    delete_socket(julius_socket)
+                    f = open('tmp.txt','w')
+                    f.write("koyama ryoma")
+                    f.close()
+                    os.system("php calendar_test01.php")
+                    time.sleep(4.0)
+                if line.find(u"芹沢") != -1:
+                    print 'call serigawa plan'
+                    kill_julius(julius)
+                    delete_socket(julius_socket)
+                    f = open('tmp.txt','w')
+                    f.write("芹澤勇輝")
+                    f.close()
+                    os.system("php calendar_test01.php")
+                    time.sleep(4.0)
+                if line.find(u"長澤") != -1:
+                    print 'call nagagawa plan'
+                    kill_julius(julius)
+                    delete_socket(julius_socket)
+                    f = open('tmp.txt','w')
+                    f.write("長澤")
+                    f.close()
+                    os.system("php calendar_test01.php")
+                    time.sleep(4.0)
+                if line.find(u"長谷川") != -1:
+                    print 'call hasegawa plan'
+                    kill_julius(julius)
+                    delete_socket(julius_socket)
+                    f = open('tmp.txt','w')
+                    f.write("長谷川")
+                    f.close()
+                    os.system("php calendar_test01.php")
+                    time.sleep(4.0)    
 
     print 'WARN : while loop breaked'
     print 'INFO : exit'
