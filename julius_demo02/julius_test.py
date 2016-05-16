@@ -47,7 +47,9 @@ def invoke_julius_set():
 def main():
     global julius
     global julius_socket
+    os.system('/home/pi/aquestalkpi/AquesTalkPi "ちょっと待ってね" | aplay')
     julius, julius_socket, sf = invoke_julius_set()
+    os.system('/home/pi/aquestalkpi/AquesTalkPi "ご命令ください" | aplay')
 
     # ###
     # # re definition
