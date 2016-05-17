@@ -81,7 +81,6 @@ def main():
             print line
             if line.find(u"天気") != -1:
                 print 'call weather02'
-                kill_julius(julius)
                 delete_socket(julius_socket)
                 f = open('tmp.txt','w')
                 f.write("袋井")
@@ -94,7 +93,6 @@ def main():
                 time.sleep(4.0)
             
             if line.find(u"ニュース") != -1:
-                kill_julius(julius)
                 delete_socket(julius_socket)
                 print 'call news'
                 os.system("php news.php")
@@ -103,7 +101,6 @@ def main():
             if line.find(u"予定") != -1:
                 if line.find(u"伊藤") != -1:
                     print 'call yuki-itou plan'
-                    kill_julius(julius)
                     delete_socket(julius_socket)
                     f = open('tmp.txt','w')
                     f.write("伊藤祐輝")
@@ -112,7 +109,6 @@ def main():
                     time.sleep(8.0)
                 if line.find(u"小山") != -1:
                     print 'call koyama plan'
-                    kill_julius(julius)
                     delete_socket(julius_socket)
                     f = open('tmp.txt','w')
                     f.write("koyama ryoma")
@@ -120,8 +116,7 @@ def main():
                     os.system("php calendar_test01.php")
                     time.sleep(8.0)
                 if line.find(u"怜真") != -1:
-                    print 'call koyama plan'
-                    kill_julius(julius)
+                    print 'call koyama plan'\
                     delete_socket(julius_socket)
                     f = open('tmp.txt','w')
                     f.write("koyama ryoma")
