@@ -24,7 +24,7 @@ $context = stream_context_create(
 ));
 
 $t = date("c");
-$t2 = date("c",strtotime("+7 day"));
+$t2 = date("c",strtotime("+1 day"));
 
 $params = array();
 $params[] = 'orderBy=startTime';
@@ -34,7 +34,7 @@ $params[] = 'timeMax=' .urlencode($t2);
 $url = API_URL.'&'.implode('&', $params);
 echo $url;
 
-$results = file_get_contents($url, false);#, $context);
+$results = file_get_contents($url, false, $context);
 
 $json = json_decode($results, true);
 
@@ -53,7 +53,6 @@ for ($i=0; $i < count($json['items']); $i++) {
 print_r($plan_list);
 
 for ($i=0; $i < count($plan_list); $i++) {
-	if ($plan_list[$i]['user_name'] == $tmp_name) {
 		$talkdate = '';
 		$talkdate .= $plan_list[$i]['user_name'];
 		$talkdate .= 'さんは、';
@@ -70,9 +69,8 @@ for ($i=0; $i < count($plan_list); $i++) {
 		$talkdate .= '、だそうです。';
 		echo $talkdate;
 		exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdate."' | aplay");
-	}
 }
 
 if (count($plan_list) == 0) {
-	exec("/home/pi/aquestalkpi/AquesTalkPi '１週間特に予定はありません。' | aplay");
+	exec("/home/pi/aquestalkpi/AquesTalkPi '誰も予定はありません。' | aplay");
 }

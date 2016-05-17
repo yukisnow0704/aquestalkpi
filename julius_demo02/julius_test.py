@@ -139,7 +139,19 @@ def main():
                     f.write("長谷川")
                     f.close()
                     os.system("php calendar_test01.php")
-                    time.sleep(4.0)    
+                    time.sleep(4.0)
+                if line.find(u"みんな") != -1:
+                    print 'call day plan'
+                    kill_julius(julius)
+                    delete_socket(julius_socket)
+                    os.system("php calendar_test02.php")
+                    time.sleep(4.0)
+                if line.find(u"皆さん") != -1:
+                    print 'call day plan'
+                    kill_julius(julius)
+                    delete_socket(julius_socket)
+                    os.system("php calendar_test02.php")
+                    time.sleep(4.0)
 
     print 'WARN : while loop breaked'
     print 'INFO : exit'
