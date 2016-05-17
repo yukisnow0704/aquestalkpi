@@ -72,9 +72,7 @@ def main():
         if julius.poll() is not None:   # means , julius dead
             delete_socket(julius_socket)
             os.system('/home/pi/aquestalkpi/AquesTalkPi "ちょっと待ってね" | aplay')
-            time.sleep(4.0)
             julius, julius_socket, sf = invoke_julius_set()
-            time.sleep(2.0)
             os.system('/home/pi/aquestalkpi/AquesTalkPi "ご命令ください" | aplay')
         else:
             line = sf.readline().decode('utf-8')
@@ -90,13 +88,11 @@ def main():
                 if line.find(u"予報") != -1:
                     print 'call weather02'
                     os.system("php weather02.php")
-                time.sleep(4.0)
             
             if line.find(u"ニュース") != -1:
                 delete_socket(julius_socket)
                 print 'call news'
                 os.system("php news.php")
-                time.sleep(8.0)
 
             if line.find(u"予定") != -1:
                 if line.find(u"伊藤") != -1:
@@ -106,7 +102,7 @@ def main():
                     f.write("伊藤祐輝")
                     f.close()
                     os.system("php calendar_test01.php")
-                    time.sleep(8.0)
+
                 if line.find(u"小山") != -1:
                     print 'call koyama plan'
                     delete_socket(julius_socket)
@@ -114,7 +110,7 @@ def main():
                     f.write("koyama ryoma")
                     f.close()
                     os.system("php calendar_test01.php")
-                    time.sleep(8.0)
+
                 if line.find(u"怜真") != -1:
                     print 'call koyama plan'
                     delete_socket(julius_socket)
@@ -122,7 +118,7 @@ def main():
                     f.write("koyama ryoma")
                     f.close()
                     os.system("php calendar_test01.php")
-                    time.sleep(8.0)
+
                 if line.find(u"芹沢") != -1:
                     print 'call serigawa plan'
                     delete_socket(julius_socket)
@@ -130,7 +126,7 @@ def main():
                     f.write("芹澤勇輝")
                     f.close()
                     os.system("php calendar_test01.php")
-                    time.sleep(8.0)
+
                 if line.find(u"長澤") != -1:
                     print 'call nagagawa plan'
                     delete_socket(julius_socket)
@@ -138,7 +134,7 @@ def main():
                     f.write("長澤")
                     f.close()
                     os.system("php calendar_test01.php")
-                    time.sleep(8.0)
+
                 if line.find(u"長谷川") != -1:
                     print 'call hasegawa plan'
                     delete_socket(julius_socket)
@@ -146,17 +142,16 @@ def main():
                     f.write("長谷川")
                     f.close()
                     os.system("php calendar_test01.php")
-                    time.sleep(8.0)
+
                 if line.find(u"みんな") != -1:
                     print 'call day plan'
                     delete_socket(julius_socket)
                     os.system("php calendar_test02.php")
-                    time.sleep(8.0)
+
                 if line.find(u"皆さん") != -1:
                     print 'call day plan'
                     delete_socket(julius_socket)
                     os.system("php calendar_test02.php")
-                    time.sleep(8.0)
 
     print 'WARN : while loop breaked'
     print 'INFO : exit'
