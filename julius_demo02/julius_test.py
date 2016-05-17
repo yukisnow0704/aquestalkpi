@@ -20,12 +20,12 @@ def invoke_julius():
     args = julius_path + ' -C ' + jconf_path + ' -module '
     print args
     p = subprocess.Popen(args, shell=True)
-    time.sleep(6.0)
     print 'INFO : invoke julius complete.'
     print 'INFO : wait 2 seconds.'
     time.sleep(3.0)
     print 'INFO : invoke julius complete'
     return p
+
 
 def kill_julius(julius):
     print 'INFO : terminate julius'
@@ -35,6 +35,16 @@ def kill_julius(julius):
         time.sleep(0.1)
     print 'INFO : terminate julius complete'
 
+
+def get_OS_PID(process):
+    psef = 'ps -ef | grep ' + process + ' | grep -ve grep -vie python |head -1|awk \'{print($2)}\''
+    if sys.version_info.major == 3:
+        PID = str(subprocess.check_output(psef, shell=True), encoding='utf-8').rstrip ()
+    else:
+        PID = subprocess.check_output(psef, shell=True).rstrip ()
+    return PID
+
+
 def create_socket():
     print 'INFO : create a socket to connect julius'
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -42,17 +52,20 @@ def create_socket():
     print 'INFO : create a socket to connect julius complete'
     return s
 
+
 def delete_socket(s):
     print 'INFO : delete a socket'
     s.close()
     print 'INFO : delete a socket complete'
     return True
 
+
 def invoke_julius_set():
     julius = invoke_julius()
     julius_socket = create_socket()
-    sf = julius_socket.makefile('')
+    sf = julius_socket.makefile('rb')
     return (julius, julius_socket, sf)
+
 
 def main():
     global julius
