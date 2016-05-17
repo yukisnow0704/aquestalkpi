@@ -47,9 +47,9 @@ def invoke_julius_set():
 def main():
     global julius
     global julius_socket
-    os.system('/home/pi/aquestalkpi/AquesTalkPi "ちょっと待ってね" | aplay')
+    #os.system('/home/pi/aquestalkpi/AquesTalkPi "ちょっと待ってね" | aplay')
     julius, julius_socket, sf = invoke_julius_set()
-    os.system('/home/pi/aquestalkpi/AquesTalkPi "ご命令ください" | aplay')
+    #os.system('/home/pi/aquestalkpi/AquesTalkPi "ご命令ください" | aplay')
 
     # ###
     # # re definition
@@ -57,11 +57,11 @@ def main():
     while True:
         if julius.poll() is not None:   # means , julius dead
             delete_socket(julius_socket)
-            os.system('/home/pi/aquestalkpi/AquesTalkPi "ちょっと待ってね" | aplay')
+            #os.system('/home/pi/aquestalkpi/AquesTalkPi "ちょっと待ってね" | aplay')
             time.sleep(4.0)
             julius, julius_socket, sf = invoke_julius_set()
             time.sleep(2.0)
-            os.system('/home/pi/aquestalkpi/AquesTalkPi "ご命令ください" | aplay')
+            #os.system('/home/pi/aquestalkpi/AquesTalkPi "ご命令ください" | aplay')
         else:
             line = sf.readline().decode('utf-8')
             print line
