@@ -21,21 +21,31 @@ def invoke_julius():
     print args
     p = subprocess.Popen(args, shell=True)
     time.sleep(6.0)
+    print 'INFO : invoke julius complete.'
+    print 'INFO : wait 2 seconds.'
+    time.sleep(3.0)
+    print 'INFO : invoke julius complete'
     return p
 
 def kill_julius(julius):
+    print 'INFO : terminate julius'
     julius.kill()
     while julius.poll() is None:
+        print 'INFO : wait for 0.1 sec julius\' termination'
         time.sleep(0.1)
+    print 'INFO : terminate julius complete'
 
 def create_socket():
+    print 'INFO : create a socket to connect julius'
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect(('localhost', 10500))
+    print 'INFO : create a socket to connect julius complete'
     return s
 
-
 def delete_socket(s):
+    print 'INFO : delete a socket'
     s.close()
+    print 'INFO : delete a socket complete'
     return True
 
 def invoke_julius_set():
@@ -47,9 +57,9 @@ def invoke_julius_set():
 def main():
     global julius
     global julius_socket
-    #os.system('/home/pi/aquestalkpi/AquesTalkPi "ちょっと待ってね" | aplay')
+    os.system('/home/pi/aquestalkpi/AquesTalkPi "ちょっと待ってね" | aplay')
     julius, julius_socket, sf = invoke_julius_set()
-    #os.system('/home/pi/aquestalkpi/AquesTalkPi "ご命令ください" | aplay')
+    os.system('/home/pi/aquestalkpi/AquesTalkPi "ご命令ください" | aplay')
 
     # ###
     # # re definition
@@ -57,11 +67,11 @@ def main():
     while True:
         if julius.poll() is not None:   # means , julius dead
             delete_socket(julius_socket)
-            #os.system('/home/pi/aquestalkpi/AquesTalkPi "ちょっと待ってね" | aplay')
+            os.system('/home/pi/aquestalkpi/AquesTalkPi "ちょっと待ってね" | aplay')
             time.sleep(4.0)
             julius, julius_socket, sf = invoke_julius_set()
             time.sleep(2.0)
-            #os.system('/home/pi/aquestalkpi/AquesTalkPi "ご命令ください" | aplay')
+            os.system('/home/pi/aquestalkpi/AquesTalkPi "ご命令ください" | aplay')
         else:
             line = sf.readline().decode('utf-8')
             print line
