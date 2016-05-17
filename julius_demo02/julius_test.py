@@ -48,6 +48,8 @@ def main():
     global julius
     global julius_socket
     os.system('/home/pi/aquestalkpi/AquesTalkPi "ちょっと待ってね" | aplay')
+    os.system('export ALSADEV="plughw:0,0"')
+    os.system('export ALSADEV="plughw:1,0"')
     julius, julius_socket, sf = invoke_julius_set()
     os.system('/home/pi/aquestalkpi/AquesTalkPi "ご命令ください" | aplay')
 
@@ -58,6 +60,8 @@ def main():
         if julius.poll() is not None:   # means , julius dead
             delete_socket(julius_socket)
             os.system('/home/pi/aquestalkpi/AquesTalkPi "ちょっと待ってね" | aplay')
+            os.system('export ALSADEV="plughw:0,0"')
+            os.system('export ALSADEV="plughw:1,0"')
             julius, julius_socket, sf = invoke_julius_set()
             time.sleep(2.0)
             os.system('/home/pi/aquestalkpi/AquesTalkPi "ご命令ください" | aplay')
@@ -159,7 +163,6 @@ def main():
 
 if __name__ == '__main__':
     try:
-        os.system('export ALSADEV="plughw:1,0"')
         main()
     except KeyboardInterrupt:
         print 'Interrupted. Exit sequence start..'
