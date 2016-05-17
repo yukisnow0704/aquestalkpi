@@ -56,7 +56,7 @@
 	print_r($ariadates);
 	
 	exec("amixer cset numid=3 1");
-	$talkdate = "続いて天気予報をお伝えします。";
+	$talkdate = "続いて予報をお伝えします。";
 	exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdate."' | aplay");
 	
 	$talkdate = "";
