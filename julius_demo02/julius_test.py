@@ -20,7 +20,7 @@ def invoke_julius():
     args = julius_path + ' -C ' + jconf_path + ' -module '
     print args
     p = subprocess.Popen(args, shell=True)
-    time.sleep(4.0)
+    time.sleep(6.0)
     return p
 
 def kill_julius(julius):
@@ -31,7 +31,6 @@ def kill_julius(julius):
 def create_socket():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect(('localhost', 10500))
-    time.sleep(2.0)
     return s
 
 
