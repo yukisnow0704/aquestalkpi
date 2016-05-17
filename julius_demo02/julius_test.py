@@ -125,7 +125,6 @@ def main():
                     time.sleep(8.0)
                 if line.find(u"芹沢") != -1:
                     print 'call serigawa plan'
-                    kill_julius(julius)
                     delete_socket(julius_socket)
                     f = open('tmp.txt','w')
                     f.write("芹澤勇輝")
@@ -134,7 +133,6 @@ def main():
                     time.sleep(8.0)
                 if line.find(u"長澤") != -1:
                     print 'call nagagawa plan'
-                    kill_julius(julius)
                     delete_socket(julius_socket)
                     f = open('tmp.txt','w')
                     f.write("長澤")
@@ -143,7 +141,6 @@ def main():
                     time.sleep(8.0)
                 if line.find(u"長谷川") != -1:
                     print 'call hasegawa plan'
-                    kill_julius(julius)
                     delete_socket(julius_socket)
                     f = open('tmp.txt','w')
                     f.write("長谷川")
@@ -152,13 +149,11 @@ def main():
                     time.sleep(8.0)
                 if line.find(u"みんな") != -1:
                     print 'call day plan'
-                    kill_julius(julius)
                     delete_socket(julius_socket)
                     os.system("php calendar_test02.php")
                     time.sleep(8.0)
                 if line.find(u"皆さん") != -1:
                     print 'call day plan'
-                    kill_julius(julius)
                     delete_socket(julius_socket)
                     os.system("php calendar_test02.php")
                     time.sleep(8.0)
