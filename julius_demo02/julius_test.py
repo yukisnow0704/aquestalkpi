@@ -116,7 +116,7 @@ def main():
                     os.system("php calendar_test01.php")
                     time.sleep(8.0)
                 if line.find(u"怜真") != -1:
-                    print 'call koyama plan'\
+                    print 'call koyama plan'
                     delete_socket(julius_socket)
                     f = open('tmp.txt','w')
                     f.write("koyama ryoma")
