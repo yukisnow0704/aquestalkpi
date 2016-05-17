@@ -76,82 +76,83 @@ def main():
             os.system('/home/pi/aquestalkpi/AquesTalkPi "ご命令ください" | aplay')
         else:
             line = sf.readline().decode('utf-8')
-            print line
-            if line.find(u"天気") != -1:
-                print 'call weather02'
-                delete_socket(julius_socket)
-                f = open('tmp.txt','w')
-                f.write("袋井")
-                f.close()
-                os.system("php weather01.php")
-                
-                if line.find(u"予報") != -1:
+            if line.find(u"WHYPO WORD") != -1:
+                print line
+                if line.find(u"天気") != -1:
                     print 'call weather02'
-                    os.system("php weather02.php")
-            
-            if line.find(u"ニュース") != -1:
-                delete_socket(julius_socket)
-                print 'call news'
-                os.system("php news.php")
-
-            if line.find(u"予定") != -1:
-                if line.find(u"伊藤") != -1:
-                    print 'call yuki-itou plan'
                     delete_socket(julius_socket)
                     f = open('tmp.txt','w')
-                    f.write("伊藤祐輝")
+                    f.write("袋井")
                     f.close()
-                    os.system("php calendar_test01.php")
-
-                if line.find(u"小山") != -1:
-                    print 'call koyama plan'
+                    os.system("php weather01.php")
+                    
+                    if line.find(u"予報") != -1:
+                        print 'call weather02'
+                        os.system("php weather02.php")
+                
+                if line.find(u"ニュース") != -1:
                     delete_socket(julius_socket)
-                    f = open('tmp.txt','w')
-                    f.write("koyama ryoma")
-                    f.close()
-                    os.system("php calendar_test01.php")
+                    print 'call news'
+                    os.system("php news.php")
 
-                if line.find(u"怜真") != -1:
-                    print 'call koyama plan'
-                    delete_socket(julius_socket)
-                    f = open('tmp.txt','w')
-                    f.write("koyama ryoma")
-                    f.close()
-                    os.system("php calendar_test01.php")
+                if line.find(u"予定") != -1:
+                    if line.find(u"伊藤") != -1:
+                        print 'call yuki-itou plan'
+                        delete_socket(julius_socket)
+                        f = open('tmp.txt','w')
+                        f.write("伊藤祐輝")
+                        f.close()
+                        os.system("php calendar_test01.php")
 
-                if line.find(u"芹沢") != -1:
-                    print 'call serigawa plan'
-                    delete_socket(julius_socket)
-                    f = open('tmp.txt','w')
-                    f.write("芹澤勇輝")
-                    f.close()
-                    os.system("php calendar_test01.php")
+                    if line.find(u"小山") != -1:
+                        print 'call koyama plan'
+                        delete_socket(julius_socket)
+                        f = open('tmp.txt','w')
+                        f.write("koyama ryoma")
+                        f.close()
+                        os.system("php calendar_test01.php")
 
-                if line.find(u"長澤") != -1:
-                    print 'call nagagawa plan'
-                    delete_socket(julius_socket)
-                    f = open('tmp.txt','w')
-                    f.write("長澤")
-                    f.close()
-                    os.system("php calendar_test01.php")
+                    if line.find(u"怜真") != -1:
+                        print 'call koyama plan'
+                        delete_socket(julius_socket)
+                        f = open('tmp.txt','w')
+                        f.write("koyama ryoma")
+                        f.close()
+                        os.system("php calendar_test01.php")
 
-                if line.find(u"長谷川") != -1:
-                    print 'call hasegawa plan'
-                    delete_socket(julius_socket)
-                    f = open('tmp.txt','w')
-                    f.write("長谷川")
-                    f.close()
-                    os.system("php calendar_test01.php")
+                    if line.find(u"芹沢") != -1:
+                        print 'call serigawa plan'
+                        delete_socket(julius_socket)
+                        f = open('tmp.txt','w')
+                        f.write("芹澤勇輝")
+                        f.close()
+                        os.system("php calendar_test01.php")
 
-                if line.find(u"みんな") != -1:
-                    print 'call day plan'
-                    delete_socket(julius_socket)
-                    os.system("php calendar_test02.php")
+                    if line.find(u"長澤") != -1:
+                        print 'call nagagawa plan'
+                        delete_socket(julius_socket)
+                        f = open('tmp.txt','w')
+                        f.write("長澤")
+                        f.close()
+                        os.system("php calendar_test01.php")
 
-                if line.find(u"皆さん") != -1:
-                    print 'call day plan'
-                    delete_socket(julius_socket)
-                    os.system("php calendar_test02.php")
+                    if line.find(u"長谷川") != -1:
+                        print 'call hasegawa plan'
+                        delete_socket(julius_socket)
+                        f = open('tmp.txt','w')
+                        f.write("長谷川")
+                        f.close()
+                        os.system("php calendar_test01.php")
+
+                    if line.find(u"みんな") != -1:
+                        print 'call day plan'
+                        delete_socket(julius_socket)
+                        os.system("php calendar_test02.php")
+
+                    if line.find(u"皆さん") != -1:
+                        print 'call day plan'
+                        delete_socket(julius_socket)
+                        os.system("php calendar_test02.php")
 
     print 'WARN : while loop breaked'
     print 'INFO : exit'
