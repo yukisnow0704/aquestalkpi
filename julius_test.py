@@ -18,7 +18,7 @@ julius_socket = None
 def invoke_julius():
     print 'INFO : invoke julius'
     args = julius_path + ' -C ' + jconf_path + ' -module '
-    p = subprocess.Popen(args, bufsize=0, executable=None, stdin=None, stdout=None, stderr=None, preexec_fn=None, close_fds=False, shell=False, cwd=None, env=None, universal_newlines=False, startupinfo=None, creationflags=0)
+    p = subprocess.Popen(args, bufsize=0, executable=None, stdin=None, stdout=None, stderr=None, preexec_fn=None, close_fds=False, shell=True, cwd=None, env=None, universal_newlines=False, startupinfo=None, creationflags=0)
     print 'INFO : invoke julius complete.'
     print 'INFO : wait 2 seconds.'
     time.sleep(3.0)
