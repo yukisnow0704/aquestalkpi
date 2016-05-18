@@ -5,7 +5,7 @@ import signal
 import shlex
 julius_path = 'julius'
 jconf_path = '~/julius-4.3.1/julius-kits/dictation-kit-v4.3.1-linux/kudo_ken.jconf'
-args = julius_path + ' -C ' + jconf_path + ' '
+args = julius_path + ' -C ' + jconf_path + ' -module '
 proc1 = subprocess.Popen(shlex.split(args))
 time.sleep(5.0)
 proc1.kill()
