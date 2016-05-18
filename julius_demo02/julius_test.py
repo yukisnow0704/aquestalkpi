@@ -80,7 +80,6 @@ def main():
             
             if line.find(u"ニュース") != -1:
                 kill_julius(julius)
-                delete_socket(julius_socket)
                 print 'call news'
                 os.system("php news.php")
                 time.sleep(4.0)
