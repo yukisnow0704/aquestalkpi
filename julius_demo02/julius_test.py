@@ -66,7 +66,7 @@ def main():
             print line
             if line.find(u"天気") != -1:
                 print 'call weather02'
-                kill_julius(julius)
+                delete_socket(julius_socket)
                 f = open('tmp.txt','w')
                 f.write("袋井")
                 f.close()
