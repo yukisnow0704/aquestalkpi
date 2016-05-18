@@ -66,6 +66,7 @@ def main():
             print line
             if line.find(u"天気") != -1:
                 print 'call weather02'
+                kill_julius(julius)
                 delete_socket(julius_socket)
                 f = open('tmp.txt','w')
                 f.write("袋井")
@@ -78,6 +79,7 @@ def main():
                 time.sleep(4.0)
             
             if line.find(u"ニュース") != -1:
+                kill_julius(julius)
                 delete_socket(julius_socket)
                 print 'call news'
                 os.system("php news.php")
