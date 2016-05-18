@@ -28,7 +28,7 @@ def invoke_julius():
 
 def kill_julius(julius):
     print 'INFO : terminate julius'
-    julius.kill()
+    subprocess.Popen.kill(julius)
     while julius.poll() is None:
         print 'INFO : wait for 0.1 sec julius\' termination'
         time.sleep(0.1)
