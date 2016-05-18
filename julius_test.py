@@ -82,19 +82,16 @@ def main():
             julius, julius_socket, sf = invoke_julius_set()
         else:
             line = sf.readline().decode('utf-8')
-            print line
-            tmp = reWATSON.search(line)
-            if tmp:
-                # print line
-                if float(tmp.group(1)) > 0.8:
-                    print 'WARN : DIE julius, call WATSON'
-                    kill_julius(julius)
-                    delete_socket(julius_socket)
-                    print '====================================='
-                    time.sleep(2.0)
-                    print '====================================='
-                    time.sleep(2.0)
-                    print '====================================='
+            if line.find(u"天気") != -1:
+                print line
+                print 'WARN : DIE julius, call WATSON'
+                kill_julius(julius)
+                delete_socket(julius_socket)
+                print '====================================='
+                time.sleep(2.0)
+                print '====================================='
+                time.sleep(2.0)
+                print '====================================='
 
     print 'WARN : while loop breaked'
     print 'INFO : exit'
