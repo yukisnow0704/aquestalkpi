@@ -31,6 +31,7 @@ sf = s.makefile('')
 
 while True:
 	line = sf.readline().decode('utf-8')
-	print line
-	if line.find(u"天気") != -1:
-		os.system("php julius_demo02/weather01.php")
+	if line.find('WHYPO') != -1:
+		print line
+		if line.find(u"天気") != -1:
+			print 'call tenki'
