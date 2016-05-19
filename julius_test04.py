@@ -33,14 +33,6 @@ while True:
 	line = sf.readline().decode('utf-8')
 	if line.find('WHYPO') != -1:
 		print line
-	    if line.find(u"天気") != -1:
-	        print 'call weather02'
-	        f = open('tmp.txt','w')
-	        f.write("袋井")
-	        f.close()
-	                
-	        if line.find(u"予報") != -1:
-	            print 'call weather02'
             
     print 'WARN : while loop breaked'
     print 'INFO : exit'
