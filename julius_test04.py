@@ -43,9 +43,7 @@ while True:
 			if line.find(u"予報") != -1:
 				print 'call weather02'
 				os.system("php julius_demo02/weather02.php")
-				time.sleep(4.0)
 
 		if line.find(u"ニュース") != -1:
 			print 'call news'
 			os.system("php julius_demo02/news.php")
-			time.sleep(4.0)
