@@ -35,4 +35,4 @@ while True:
 		print line
 		if line.find(u"天気") != -1:
 			print 'call tenki'
-			Popen('php julius_demo02/weather01.php')
+			Popen('php julius_demo02/weather01.php' ,shell=True)
