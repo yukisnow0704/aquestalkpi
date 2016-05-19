@@ -34,22 +34,22 @@ while True:
 	if line.find('WHYPO') != -1:
 		print line
 		if line.find(u"天気") != -1:
-                print 'call julius_demo02/weather02'
-                kill_julius(julius)
-                delete_socket(julius_socket)
-                f = open('tmp.txt','w')
-                f.write("袋井")
-                f.close()
-                os.system("php julius_demo02/weather01.php")
-                
-                if line.find(u"予報") != -1:
-                    print 'call weather02'
-                    os.system("php julius_demo02/weather02.php")
-                time.sleep(4.0)
-            
-            if line.find(u"ニュース") != -1:
-                kill_julius(julius)
-                delete_socket(julius_socket)
-                print 'call news'
-                os.system("php julius_demo02/news.php")
-                time.sleep(4.0)
+			print 'call julius_demo02/weather02'
+			kill_julius(julius)
+			delete_socket(julius_socket)
+			f = open('tmp.txt','w')
+			f.write("袋井")
+			f.close()
+			os.system("php julius_demo02/weather01.php")
+
+			if line.find(u"予報") != -1:
+				print 'call weather02'
+				os.system("php julius_demo02/weather02.php")
+				time.sleep(4.0)
+
+		if line.find(u"ニュース") != -1:
+			kill_julius(julius)
+			delete_socket(julius_socket)
+			print 'call news'
+			os.system("php julius_demo02/news.php")
+			time.sleep(4.0)
