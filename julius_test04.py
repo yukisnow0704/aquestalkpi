@@ -8,6 +8,8 @@ import re
 import subprocess
 import shlex
 import time
+from subprocess import Popen
+
 
 julius_path = 'julius'
 jconf_path = '~/julius-4.3.1/julius-kits/dictation-kit-v4.3.1-linux/kudo_ken.jconf'
