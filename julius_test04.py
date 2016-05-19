@@ -10,6 +10,11 @@ import shlex
 import time
 from subprocess import Popen
 
+def loop(args):
+	p = Popen(args, shell=True)
+	print p.poll()
+	while p.poll() == None:
+		print 'wita'
 
 julius_path = 'julius'
 jconf_path = '~/julius-4.3.1/julius-kits/dictation-kit-v4.3.1-linux/kudo_ken.jconf'
@@ -35,4 +40,4 @@ while True:
 		print line
 		if line.find(u"天気") != -1:
 			print 'call tenki'
-			Popen('php julius_demo02/weather01.php' ,shell=True)
+			loop('php julius_demo02/weather01.php')
