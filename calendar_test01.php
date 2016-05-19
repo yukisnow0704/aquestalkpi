@@ -1,7 +1,6 @@
 <?php
 
 define('CALENDAR_ID', 'v697mv8894olu7p52nld967mbs@group.calendar.google.com');
-define('CALENDAR_ID', 'v697mv8894olu7p52nld967mbs@group.calendar.google.com');
 define('API_KEY','AIzaSyCbjR--_-hHAhZOUUp6p_AeNWCrgQOMgvQ');
 define('API_URL', 'https://www.googleapis.com/calendar/v3/calendars/'.CALENDAR_ID.'/events?key='.API_KEY.'&singleEvents=true');
 $tmp_fp = fopen('tmp.txt', 'r');
