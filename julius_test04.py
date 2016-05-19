@@ -81,11 +81,14 @@ def main():
             julius, julius_socket, sf = invoke_julius_set()
             time.sleep(2.0)
             os.system('/home/pi/aquestalkpi/AquesTalkPi "ご命令ください" | aplay')
+            loopcound = 0
         else:
             line = sf.readline().decode('utf-8')
             print line
             if line.find(u"天気") != -1:
                 print 'call weather02'
+                loopcound = loopcound + 1
+                print str(loopcound)
                 f = open('tmp.txt','w')
                 f.write("袋井")
                 f.close()
