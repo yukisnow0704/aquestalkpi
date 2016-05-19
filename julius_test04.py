@@ -24,15 +24,15 @@ print 'INFO : wait 2 seconds.'
 time.sleep(3.0)
 print 'INFO : invoke julius complete'
 
-print 'INFO : create a socket to connect julius'
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect(('localhost', 10500))
-print 'INFO : create a socket to connect julius complete'
 
-sf = s.makefile('rb')
-os.system('/home/pi/aquestalkpi/AquesTalkPi "ちょっと待ってね" | aplay')
-os.system('/home/pi/aquestalkpi/AquesTalkPi "ご命令ください" | aplay')
+sf = s.makefile('')
+
 while True:
+	line = sf.readline().decode('utf-8')
+	if line.find('WHYPO') != -1:
+		print linewhile True:
     line = sf.readline().decode('utf-8')
     print line
     if line.find(u"天気") != -1:
