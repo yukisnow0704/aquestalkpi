@@ -91,7 +91,6 @@ def main():
             if line.find(u"天気") != -1:
                 print line
                 print 'WARN : DIE julius, call WATSON'
-                kill_julius(julius)
                 delete_socket(julius_socket)
                 print '====================================='
                 time.sleep(2.0)
