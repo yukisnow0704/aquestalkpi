@@ -12,9 +12,9 @@ from subprocess import Popen
 
 def loop(args):
 	p = Popen(args, shell=True)
-	print p.poll()
 	while p.poll() == None:
 		print 'wita'
+		time.sleep(2.0)
 
 julius_path = 'julius'
 jconf_path = '~/julius-4.3.1/julius-kits/dictation-kit-v4.3.1-linux/kudo_ken.jconf'
