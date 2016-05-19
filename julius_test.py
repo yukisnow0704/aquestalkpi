@@ -87,6 +87,8 @@ def main():
                 print line
                 print 'WARN : DIE julius, call WATSON'
                 delete_socket(julius_socket)
+                os.system("php julius_demo02/weather01.php")
+                os.system("php julius_demo02/weather02.php")
                 print '====================================='
                 time.sleep(2.0)
                 print '====================================='
