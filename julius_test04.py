@@ -33,6 +33,3 @@ while True:
 	line = sf.readline().decode('utf-8')
 	if line.find('WHYPO') != -1:
 		print line
-            
-    print 'WARN : while loop breaked'
-    print 'INFO : exit'
