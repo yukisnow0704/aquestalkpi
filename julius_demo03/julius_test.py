@@ -43,6 +43,9 @@ while True:
 		print line
 		if line.find(u"天気") != -1:
 			print 'call tenki'
+			f = open('tmp.txt','w')
+			f.write("袋井")
+			f.close()
 			api = loop('php weather01.php', api)
 			
 			if line.find(u"予報") != -1:
