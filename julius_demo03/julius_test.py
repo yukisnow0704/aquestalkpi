@@ -15,6 +15,7 @@ def loop(args, api):
 		p = Popen(args, shell=True)
 	else:
 		p = api
+		print 'call now!!'
 	return p
 
 julius_path = 'julius'
