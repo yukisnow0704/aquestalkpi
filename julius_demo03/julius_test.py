@@ -34,7 +34,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect(('localhost', 10500))
 
 sf = s.makefile('')
-api = 'test';
+api = Popen('php start.php', shell=True);
 
 while True:
 	line = sf.readline().decode('utf-8')
