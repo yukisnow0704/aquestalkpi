@@ -11,7 +11,7 @@ import time
 from subprocess import Popen
 
 def loop(args, api):
-	if api.poll() is not None:
+	if api.poll() is not None or api == 'test':
 		p = Popen(args, shell=True)
 	else:
 		p = api
