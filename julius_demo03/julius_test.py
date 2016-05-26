@@ -47,8 +47,41 @@ while True:
 			f.write("袋井")
 			f.close()
 			api = loop('php weather01.php', api)
-			
-			if line.find(u"予報") != -1:
-				print 'call weather02'
-				api = loop('php weather02.php', api)
-            
+		if line.find(u"ニュース") != -1:
+			print 'call news'
+			api = loop("php news.php", api)
+		
+		if line.find(u"予定") != -1:
+			if line.find(u"伊藤") != -1:
+				print 'call yuki-itou plan'
+				f = open('tmp.txt','w')
+				f.write("伊藤祐輝")
+				f.close()
+				loop("php calendar_test01.php", api)
+			if line.find(u"小山") != -1 or line.find(u"怜真") != -1:
+				print 'call koyama plan'
+				f = open('tmp.txt','w')
+				f.write("koyama ryoma")
+				f.close()
+				loop("php calendar_test01.php", api)
+			if line.find(u"芹沢") != -1:
+				print 'call serigawa plan'
+				f = open('tmp.txt','w')
+				f.write("芹澤勇輝")
+				f.close()
+				os.system("php calendar_test01.php")
+			if line.find(u"長澤") != -1:
+				print 'call nagagawa plan'
+				f = open('tmp.txt','w')
+				f.write("長澤")
+				f.close()
+				loop("php calendar_test01.php", api)
+			if line.find(u"長谷川") != -1:
+				print 'call hasegawa plan'
+				f = open('tmp.txt','w')
+				f.write("長谷川")
+				f.close()
+				loop("php calendar_test01.php", api)
+			if line.find(u"みんな") != -1 or line.find(u"皆さん") != -1:
+				print 'call day plan'
+				loop("php calendar_test02.php", api)
