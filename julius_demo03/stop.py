@@ -1,4 +1,4 @@
 import time
 while True:
-	time.sleep(10);
+	time.sleep(1);
 	print('call ok!!')
