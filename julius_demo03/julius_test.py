@@ -10,12 +10,12 @@ import shlex
 import time
 from subprocess import Popen
 
-def loop(args, api):
-	if api.poll() is not None:
+def loop(args, api, sleep):
+	if api.poll() is not None or sleep.poll() is not None:
 		p = Popen(args, shell=True)
 	else:
 		p = api
-		print 'call now!!'
+		print 'call now!! or sleep now!!'
 	return p
 
 julius_path = 'julius'
@@ -35,7 +35,9 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect(('localhost', 10500))
 
 sf = s.makefile('')
-api = Popen('php start.php', shell=True);
+sleep = Popen('python stop.py', shell=True)
+sleep.kill()
+api = Popen('php start.php', shell=True)
 
 while True:
 	line = sf.readline().decode('utf-8')
@@ -46,46 +48,11 @@ while True:
 			f = open('tmp.txt','w')
 			f.write("袋井")
 			f.close()
-			api = loop('php weather01.php', api)
+			api = loop('php weather01.php', api, sleep)
 		if line.find(u"ニュース") != -1:
 			print 'call news'
-			api = loop("php news.php", api)
-		
-		if line.find(u"予定") != -1:
-			if line.find(u"伊藤") != -1:
-				print 'call yuki-itou plan'
-				f = open('tmp.txt','w')
-				f.write("伊藤祐輝")
-				f.close()
-				loop("php calendar_test01.php", api)
-			if line.find(u"小山") != -1 or line.find(u"怜真") != -1:
-				print 'call koyama plan'
-				f = open('tmp.txt','w')
-				f.write("koyama ryoma")
-				f.close()
-				loop("php calendar_test01.php", api)
-			if line.find(u"芹沢") != -1:
-				print 'call serigawa plan'
-				f = open('tmp.txt','w')
-				f.write("芹澤勇輝")
-				f.close()
-				os.system("php calendar_test01.php")
-			if line.find(u"長澤") != -1:
-				print 'call nagagawa plan'
-				f = open('tmp.txt','w')
-				f.write("長澤")
-				f.close()
-				loop("php calendar_test01.php", api)
-			if line.find(u"長谷川") != -1:
-				print 'call hasegawa plan'
-				f = open('tmp.txt','w')
-				f.write("長谷川")
-				f.close()
-				loop("php calendar_test01.php", api)
-			if line.find(u"みんな") != -1 or line.find(u"皆さん") != -1:
-				print 'call day plan'
-				loop("php calendar_test02.php", api)
+			api = loop("php news.php", api, sleep)
 
 		if line.find(u"停止") != -1 or line.find(u"止まれ") != -1 or line.find(u"黙れ") != -1:
 				print 'call stop'
-				loop("python stop.py", api)
+				sleep = Popen('python stop.py', shell=True)
