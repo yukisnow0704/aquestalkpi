@@ -55,6 +55,12 @@ while True:
 			print 'call news'
 			api = loop("php news.php")
 
-		if line.find(u"停止") != -1 or line.find(u"止まれ") != -1 or line.find(u"黙れ") != -1:
-				print 'call stop'
-				sleep = Popen('python stop.py', shell=True)
+		if line.find(u"停止") != -1 or line.find(u"おやすみ") != -1 or line.find(u"黙れ") != -1:
+			print 'call stop'
+			sleep = Popen('python stop.py', shell=True)
+
+		if line.find(u"おはよう") != -1:
+			print 'call start'
+			sleep.kill()
+			api = Popen('php start.php', shell=True)
+
