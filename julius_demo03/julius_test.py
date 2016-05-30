@@ -10,7 +10,9 @@ import shlex
 import time
 from subprocess import Popen
 
-def loop(args, api, sleep):
+def loop(args):
+	grobal api
+	grobal sleep
 	if api.poll() is not None or sleep.poll() is not None:
 		p = Popen(args, shell=True)
 	else:
@@ -48,10 +50,10 @@ while True:
 			f = open('tmp.txt','w')
 			f.write("袋井")
 			f.close()
-			api = loop('php weather01.php', api, sleep)
+			api = loop('php weather01.php')
 		if line.find(u"ニュース") != -1:
 			print 'call news'
-			api = loop("php news.php", api, sleep)
+			api = loop("php news.php")
 
 		if line.find(u"停止") != -1 or line.find(u"止まれ") != -1 or line.find(u"黙れ") != -1:
 				print 'call stop'
