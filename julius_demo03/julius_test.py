@@ -62,5 +62,6 @@ while True:
 		if line.find(u"おはよう") != -1:
 			print 'call start'
 			sleep.kill()
+			time.sleep(2)
 			api = Popen('php start.php', shell=True)
 
