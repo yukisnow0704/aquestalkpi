@@ -11,7 +11,7 @@ import time
 from subprocess import Popen
 
 def loop(args, api):
-	if api.poll() is not None or api == 'test':
+	if api.poll() is not None:
 		p = Popen(args, shell=True)
 	else:
 		p = api
@@ -85,3 +85,7 @@ while True:
 			if line.find(u"みんな") != -1 or line.find(u"皆さん") != -1:
 				print 'call day plan'
 				loop("php calendar_test02.php", api)
+
+		if line.find(u"停止") != -1 or line.find(u"止まれ") != -1 or line.find(u"黙れ") != -1:
+				print 'call stop'
+				loop("python stop.py", api)

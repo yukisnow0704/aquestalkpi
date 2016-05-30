@@ -51,26 +51,28 @@ for ($i=0; $i < count($json['items']); $i++) {
 }
 
 print_r($plan_list);
+$x = 0;
 
 for ($i=0; $i < count($plan_list); $i++) {
-		$talkdate = '';
-		$talkdate .= $plan_list[$i]['user_name'];
-		$talkdate .= 'さんは、';
-		$talkdate .= date("d日H時", $plan_list[$i]['start_date']);
-		$talkdate .= 'から';
-		$talkdate .= date("H時", $plan_list[$i]['end_date']);
-		$talkdate .= 'まで';
-		if ($plan_list[$i]['name'] == '') {
-			$talkdate .= '不明な用事';
-		}
-		else{
-			$talkdate .= $plan_list[$i]['name'];
-		}
-		$talkdate .= '、だそうです。';
-		echo $talkdate;
-		exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdate."' | aplay");
+	$talkdate = '';
+	$talkdate .= $plan_list[$i]['user_name'];
+	$talkdate .= 'さんは、';
+	$talkdate .= date("d日H時", $plan_list[$i]['start_date']);
+	$talkdate .= 'から';
+	$talkdate .= date("H時", $plan_list[$i]['end_date']);
+	$talkdate .= 'まで';
+	if ($plan_list[$i]['name'] == '') {
+		$talkdate .= '不明な用事';
+	}
+	else{
+		$talkdate .= $plan_list[$i]['name'];
+	}
+	$talkdate .= '、だそうです。';
+	echo $talkdate;
+	exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdate."' | aplay");
+	$x = $x + 1;
 }
 
-if (count($plan_list) == 0) {
+if (count($plan_list) == 0 || $x == 0) {
 	exec("/home/pi/aquestalkpi/AquesTalkPi '誰も予定はありません。' | aplay");
 }

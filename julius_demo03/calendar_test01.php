@@ -50,6 +50,7 @@ for ($i=0; $i < count($json['items']); $i++) {
 }
 
 print_r($plan_list);
+$x = 0;
 
 for ($i=0; $i < count($plan_list); $i++) {
 	if ($plan_list[$i]['user_name'] == $tmp_name) {
@@ -69,9 +70,10 @@ for ($i=0; $i < count($plan_list); $i++) {
 		$talkdate .= '、だそうです。';
 		echo $talkdate;
 		exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdate."' | aplay");
+		$x = $x + 1;
 	}
 }
 
-if (count($plan_list) == 0) {
+if (count($plan_list) == 0 || $x == 0) {
 	exec("/home/pi/aquestalkpi/AquesTalkPi '１週間特に予定はありません。' | aplay");
 }
