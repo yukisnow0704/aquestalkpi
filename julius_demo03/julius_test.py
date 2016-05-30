@@ -11,8 +11,8 @@ import time
 from subprocess import Popen
 
 def loop(args):
-	grobal api
-	grobal sleep
+	global api
+	global sleep
 	if api.poll() is not None or sleep.poll() is not None:
 		p = Popen(args, shell=True)
 	else:
