@@ -20,6 +20,19 @@ def loop(args):
 		print 'call now!! or sleep now!!'
 	return p
 
+def stop(tmp):
+	global sleep
+	if tmp == 'stop':
+		if sleep.poll() is not None:
+			sleep = Popen('python stop.py', shell=True)
+	elif tmp == 'start':
+		if sleep.poll() is None:
+			sleep.kill()
+			time.sleep(2)
+			if sleep.poll() is not None:
+				print 'ok!stop'
+				api = Popen('php start.php', shell=True)
+
 julius_path = 'julius'
 jconf_path = '~/julius-4.3.1/julius-kits/dictation-kit-v4.3.1-linux/kudo_ken.jconf'
 julius = None
@@ -57,13 +70,9 @@ while True:
 
 		if line.find(u"停止") != -1 or line.find(u"おやすみ") != -1 or line.find(u"黙れ") != -1:
 			print 'call stop'
-			sleep = Popen('python stop.py', shell=True)
+			stop('stop')
 
 		if line.find(u"おはよう") != -1:
 			print 'call start'
-			sleep.kill()
-			if sleep.poll() is not None:
-				print 'ok!stop'
-			time.sleep(2)
-			api = Popen('php start.php', shell=True)
+			stop('start')
 
