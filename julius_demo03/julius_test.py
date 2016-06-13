@@ -13,7 +13,7 @@ from subprocess import Popen
 def loop(args):
 	global api
 	global sleep
-	if api.poll() is not None:
+	if api.poll() is not None and sleep.poll() is not None:
 		p = Popen(args, shell=True)
 	else:
 		p = api
@@ -54,6 +54,8 @@ sf = s.makefile('')
 sleep = Popen('python stop.py', shell=True)
 sleep.kill()
 api = Popen("/home/pi/aquestalkpi/AquesTalkPi 'おはようございます' | aplay", shell=True)
+time.sleep(1.0)
+api.kill()
 
 while True:
 	line = sf.readline().decode('utf-8')
