@@ -33,7 +33,6 @@ def stop(tmp):
 			time.sleep(2)
 			if sleep.poll() is not None:
 				print 'ok!stop'
-				api = Popen('php start.php', shell=True)
 
 julius_path = 'julius'
 jconf_path = '~/julius-4.3.1/julius-kits/dictation-kit-v4.3.1-linux/kudo_ken.jconf'
@@ -54,7 +53,7 @@ s.connect(('localhost', 10500))
 sf = s.makefile('')
 sleep = Popen('python stop.py', shell=True)
 sleep.kill()
-Popen("/home/pi/aquestalkpi/AquesTalkPi 'おはようございます' | aplay", shell=True)
+api = Popen("/home/pi/aquestalkpi/AquesTalkPi 'おはようございます' | aplay", shell=True)
 
 while True:
 	line = sf.readline().decode('utf-8')
