@@ -24,10 +24,12 @@ def stop(tmp):
 	global sleep
 	if tmp == 'stop':
 		if sleep.poll() is not None:
+			Popen("/home/pi/aquestalkpi/AquesTalkPi 'おやすみなさい' | aplay", shell=True)
 			sleep = Popen('python stop.py', shell=True)
 	elif tmp == 'start':
 		if sleep.poll() is None:
 			sleep.kill()
+			Popen("/home/pi/aquestalkpi/AquesTalkPi 'おはようございます' | aplay", shell=True)
 			time.sleep(2)
 			if sleep.poll() is not None:
 				print 'ok!stop'
@@ -52,6 +54,7 @@ s.connect(('localhost', 10500))
 sf = s.makefile('')
 sleep = Popen('python stop.py', shell=True)
 sleep.kill()
+Popen("/home/pi/aquestalkpi/AquesTalkPi 'おはようございます' | aplay", shell=True)
 
 while True:
 	line = sf.readline().decode('utf-8')
