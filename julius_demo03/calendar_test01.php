@@ -4,9 +4,9 @@ define('CALENDAR_ID', 'v697mv8894olu7p52nld967mbs@group.calendar.google.com');
 define('API_KEY','AIzaSyCbjR--_-hHAhZOUUp6p_AeNWCrgQOMgvQ');
 define('API_URL', 'https://www.googleapis.com/calendar/v3/calendars/'.CALENDAR_ID.'/events?key='.API_KEY.'&singleEvents=true');
 $tmp_fp = fopen('tmp.txt', 'r');
-$tmp_name = fgets($tmp_fp);
+$tmp_email = fgets($tmp_fp);
 
-echo $tmp_name;
+echo $tmp_email;
 
 fclose($tmp_fp);
 
@@ -53,7 +53,7 @@ print_r($plan_list);
 $x = 0;
 
 for ($i=0; $i < count($plan_list); $i++) {
-	if ($plan_list[$i]['user_name'] == $tmp_name) {
+	if ($plan_list[$i]['user_email'] == $tmp_email) {
 		$talkdate = '';
 		$talkdate .= $plan_list[$i]['user_name'];
 		$talkdate .= 'さんは、';

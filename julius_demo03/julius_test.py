@@ -24,10 +24,12 @@ def stop(tmp):
 	global sleep
 	if tmp == 'stop':
 		if sleep.poll() is not None:
+			Popen("/home/pi/aquestalkpi/AquesTalkPi 'おやすみなさい' | aplay")
 			sleep = Popen('python stop.py', shell=True)
 	elif tmp == 'start':
 		if sleep.poll() is None:
 			sleep.kill()
+			Popen("/home/pi/aquestalkpi/AquesTalkPi 'おはようございます' | aplay")
 			time.sleep(2)
 			if sleep.poll() is not None:
 				print 'ok!stop'
@@ -52,7 +54,7 @@ s.connect(('localhost', 10500))
 sf = s.makefile('')
 sleep = Popen('python stop.py', shell=True)
 sleep.kill()
-api = Popen('php start.php', shell=True)
+Popen("/home/pi/aquestalkpi/AquesTalkPi 'おはようございます' | aplay")
 
 while True:
 	line = sf.readline().decode('utf-8')
@@ -75,4 +77,44 @@ while True:
 		if line.find(u"おはよう") != -1:
 			print 'call start'
 			stop('start')
+
+		if line.find(u"予定") != -1:
+			if line.find(u"伊藤") != -1:
+				print 'call yuki-itou plan'
+				f = open('tmp.txt','w')
+				f.write("yukisnow0704@gmail.com")
+				f.close()
+				api = loop("php calendar_test01.php")
+
+			if line.find(u"怜真") != -1 or line.find(u"小山") != -1:
+				print 'call koyama plan'
+				f = open('tmp.txt','w')
+				f.write("koyamaryoma@gmail.com")
+				f.close()
+				api = loop("php calendar_test01.php")
+
+			if line.find(u"芹沢") != -1:
+				print 'call koyama plan'
+				f = open('tmp.txt','w')
+				f.write("kodoukenn.seri@gmail.com")
+				f.close()
+				api = loop("php calendar_test01.php")
+
+			if line.find(u"長澤") != -1:
+				print 'call koyama plan'
+				f = open('tmp.txt','w')
+				f.write("nagasawa.ichi@gmail.com")
+				f.close()
+				api = loop("php calendar_test01.php")
+
+			if line.find(u"長谷川") != -1:
+				print 'call koyama plan'
+				f = open('tmp.txt','w')
+				f.write("ryomu810@gmail.com")
+				f.close()
+				api = loop("php calendar_test01.php")
+
+			if line.find(u"みんな") != -1 or line.find(u"皆さん") != -1:
+				print 'call day plan'
+				api = loop("php calendar_test02.php")
 
