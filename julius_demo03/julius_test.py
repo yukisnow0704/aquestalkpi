@@ -13,7 +13,7 @@ from subprocess import Popen
 def loop(args):
 	global api
 	global sleep
-	if api.poll() is not None and sleep.poll() is not None:
+	if api.poll() is not None or sleep.poll() is not None:
 		p = Popen(args, shell=True)
 	else:
 		p = api
