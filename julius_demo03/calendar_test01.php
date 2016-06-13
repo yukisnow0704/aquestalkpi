@@ -39,7 +39,6 @@ $json = json_decode($results, true);
 
 $plan_list = array();
 
-print_r($json);
 
 for ($i=0; $i < count($json['items']); $i++) {
 	$plan_list[$i]['name'] = $json['items'][$i]['summary'];
