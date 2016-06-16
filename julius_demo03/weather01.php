@@ -81,3 +81,4 @@
 		};
 		echo $talkdate;
 		exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdate."' | aplay");
+		exec("php weather02.php");
