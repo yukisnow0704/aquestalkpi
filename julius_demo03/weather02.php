@@ -78,6 +78,9 @@
 	$talkdate .= "の天気は、";
 	$talkdate .= date("H時", $ariadates[$aria]['date'][$time]);
 	$talkdate .= "から";
+	exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdate."' | aplay");
+	$talkdate = '';
+	sleep(0.5);
 	$talkdate .= $weather_list[$ariadates[$aria]['weather'][$time]];
 	$talkdate .= "みたいです。";
 		

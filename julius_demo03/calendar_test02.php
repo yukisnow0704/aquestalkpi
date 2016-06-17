@@ -61,6 +61,9 @@ for ($i=0; $i < count($plan_list); $i++) {
 	$talkdate .= 'から';
 	$talkdate .= date("H時", $plan_list[$i]['end_date']);
 	$talkdate .= 'まで';
+	exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdate."' | aplay");
+	sleep(0.5);
+	$talkdate = '';	
 	if ($plan_list[$i]['name'] == '') {
 		$talkdate .= '不明な用事';
 	}
