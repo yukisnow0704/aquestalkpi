@@ -80,7 +80,7 @@
 	$talkdate .= "から";
 	exec("/home/pi/aquestalkpi/AquesTalkPi '".$talkdate."' | aplay");
 	$talkdate = '';
-	sleep(1ß);
+	sleep(1);
 	$talkdate .= $weather_list[$ariadates[$aria]['weather'][$time]];
 	$talkdate .= "みたいです。";
 		
