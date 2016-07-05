@@ -65,14 +65,13 @@ api.kill()
 while True:
 	line = sf.readline().decode('utf-8')
 	if line.find('WHYPO') != -1:
-		lime = '<WHYPO WORD=“さようなら” CLASSID=“さようなら” PHONE=“silB s a y o u n a r a sliE” CM=“0.994"/>'
-		line_score = line[-8:-3]
+		line_score = line[-9:-3]
 
 		print line_score
 
-		line_score = float(line_score)
-		print line_score
-		if line_score > 0.8:
+		line_score01 = float(line_score)
+		print line_score01
+		if line_score01 > 0.8:
 			print line
 			if line.find(u"天気") != -1:
 				print 'call tenki'
