@@ -65,7 +65,7 @@ api.kill()
 while True:
 	line = sf.readline().decode('utf-8')
 	if line.find('WHYPO') != -1:
-		line_score = line[-9:-3]
+		line_score = line[-9:-4]
 
 		print line_score
 
