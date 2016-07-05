@@ -67,12 +67,9 @@ while True:
 	if line.find('WHYPO') != -1:
 		line_score = line[-9:-4]
 
-		print line_score
-
-		line_score01 = float(line_score)
-		print line_score01
-		if line_score01 > 0.8:
-			print line
+		line_score_float = float(line_score)
+		if line_score_float > 0.8:
+			print "SCORE:" + line_score
 			if line.find(u"天気") != -1:
 				print 'call tenki'
 				f = open('tmp.txt','w')

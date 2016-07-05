@@ -6,5 +6,5 @@ test01 = test[-8:-3]
 
 test02 = float(test01)
 
-print test02
+print test01 + 'バーカ'
 print test02 + 1
