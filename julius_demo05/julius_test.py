@@ -68,6 +68,8 @@ while True:
 		lime = '<WHYPO WORD=“さようなら” CLASSID=“さようなら” PHONE=“silB s a y o u n a r a sliE” CM=“0.994"/>'
 		line_score = line[-8:-3]
 
+		print line_score
+
 		line_score = float(line_score)
 		print line_score
 		if line_score > 0.8:
