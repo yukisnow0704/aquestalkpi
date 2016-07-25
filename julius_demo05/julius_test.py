@@ -38,7 +38,7 @@ def stop(tmp):
 
 #ジュリアス起動
 julius_path = '/home/pi/julius-4.3.1/julius/julius'
-jconf_path = '/home/pi/julius-kits/dictation-kit-v4.3.1-linux/kudo_ken.dic'
+jconf_path = '/home/pi/julius-kits/dictation-kit-v4.3.1-linux/kudo_ken.jconf'
 julius = None
 julius_socket = None
 
