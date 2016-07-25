@@ -37,8 +37,8 @@ def stop(tmp):
 				print 'ok!stop'
 
 #ジュリアス起動
-julius_path = 'julius'
-jconf_path = '~/julius-4.3.1/julius-kits/dictation-kit-v4.3.1-linux/kudo_ken.jconf'
+julius_path = '~/julius-4.3.1/julius/julius'
+jconf_path = '~/julius-kits/dictation-kit-v4.3.1-linux/kudo_ken.dic'
 julius = None
 julius_socket = None
 
