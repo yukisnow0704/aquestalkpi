@@ -17,7 +17,7 @@
 
   	$news = array();
 
-	$json = file_get_contents($url, false);#, $context);
+	$json = file_get_contents($url, false, $context);
 	$json = mb_convert_encoding($json, 'utf8', 'ASCII,JIS,,UTF-8,EUC-JP,SJIS-WIN');
 	$dates = json_decode($json, true);
 
