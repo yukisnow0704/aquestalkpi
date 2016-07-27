@@ -33,8 +33,7 @@ $params[] = 'timeMax=' .urlencode($t2);
 $url = API_URL.'&'.implode('&', $params);
 echo $url;
 
-$results = file_get_contents($url, false, $context);
-
+$results = file_get_contents($url, false,#, $context);
 $json = json_decode($results, true);
 
 $plan_list = array();
