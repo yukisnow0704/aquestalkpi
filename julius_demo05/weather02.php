@@ -44,7 +44,7 @@
 	$ariaurl .= ",jp&APPID=";
 	$ariaurl .= $apikey;
 
-	$json = file_get_contents($ariaurl, false,#, $context);
+	$json = file_get_contents($ariaurl, false);#, $context);
 	$json = mb_convert_encoding($json, 'utf8', 'ASCII,JIS,,UTF-8,EUC-JP,SJIS-WIN');
 	$dates = json_decode($json, true);
 	echo $dates['list'][1]['weather'][0]['description'];;
