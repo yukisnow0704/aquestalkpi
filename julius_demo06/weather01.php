@@ -40,7 +40,7 @@
 	$ariaurl .= $apikey;
 	echo $ariaurl;
 
-	$json = file_get_contents($ariaurl, false, $context);
+	$json = file_get_contents($ariaurl, false);#, $context);
 	$json = mb_convert_encoding($json, 'utf8', 'ASCII,JIS,,UTF-8,EUC-JP,SJIS-WIN');
 	$datas = json_decode($json, true);
 

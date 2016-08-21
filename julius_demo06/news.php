@@ -16,7 +16,7 @@
 
   	$news = array();
 
-	$rss = file_get_contents($url, false, $context);
+	$rss = file_get_contents($url, false);#, $context);
 	$xml = simplexml_load_string($rss);
 	$dates = get_object_vars($xml);
 
