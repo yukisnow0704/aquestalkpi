@@ -65,7 +65,7 @@ api.kill()
 
 while True:
 	line = sf.readline().decode('utf-8')
-	d = dattetime.datetime.today()
+	d = datetime.datetime.today()
 
 	if (d.hour == 8) and (0 <= d.minute <= 30):
 		if email_time == true:
