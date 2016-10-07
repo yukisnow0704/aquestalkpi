@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>yuki sample motor proguram</title>
+        <meta charset="utf-8">
+</head>
+<body>
+        <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+        <script type="text/javascript">
+                $(function(){
+                        var ip_address = '192.168.111.102';
+                        var port = '3000'
+                        $('tbody #up').on('mousedown', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/up",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        }).on('mouseup', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/stop",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        });
+
+                        $('tbody #down').on('mousedown', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/down",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        }).on('mouseup', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/stop",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        });
+
+                        $('tbody #leftUp').on('mousedown', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/leftUp",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        }).on('mouseup', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/stop",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        });
+
+                        $('tbody #leftDown').on('mousedown', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/leftDown",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        }).on('mouseup', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/stop",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        });
+
+                        $('tbody #rightUp').on('mousedown', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/rightUp",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        }).on('mouseup', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/stop",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        });
+
+                        $('tbody #rightDown').on('mousedown', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/rightDown",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        }).on('mouseup', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/stop",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        });
+
+
+                        $('tbody #stop').on('click', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/stop",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        });
+                });
+        </script>
+
+        <table id="stop" style="background-color: black;">
+                <tbody>
+                        <tr>
+                                <td>
+                                        <img id="leftUp" src="img/leftUp.png">
+                                </td>
+                                <td>
+                                        <img id="up" src="img/up.png">
+                                </td>
+                                <td>
+                                        <img id="rightUp" src="img/rightUp.png">
+                                </td>
+                        </tr>
+                        <tr>
+                                <td>
+                                        <img id="leftDown" src="img/leftDown.png">
+                                </td>
+                                <td>
+                                        <img id="down" src="img/down.png">
+                                </td>
+                                <td>
+                                        <img id="rightDown" src="img/rightDown.png">
+                                </td>
+                        </tr>
+                </tbody>
+        </table>
+</body>
+</html>
+
