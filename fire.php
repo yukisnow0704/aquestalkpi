@@ -12,7 +12,7 @@ while (true) {
 	while ($isFunction == false) {
 		$var = digitalRead($buttonpin);
 		if($var == 1){
-			print($var)
+			print($var);
 			$isFunction = true;
 		}
 	}
