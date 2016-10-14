@@ -7,7 +7,7 @@ wiringPiSetupGpio();
 pinMode($buttonpin, 1);
 
 while (true) {
-	while (!$isFunction) {
+	while ($isFunction == false) {
 		if(digitalRead($buttonpin) == 1){
 			$isFunction = true;
 		}
