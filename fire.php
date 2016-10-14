@@ -6,7 +6,7 @@ $var;
 
 wiringPiSetupGpio();
 
-pinMode($buttonpin, 1);
+pinMode($buttonpin, 0);
 
 while (true) {
 	while ($isFunction == false) {
