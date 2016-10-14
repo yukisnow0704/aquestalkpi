@@ -11,8 +11,8 @@ pinMode($buttonpin, 1);
 while (true) {
 	while ($isFunction == false) {
 		$var = digitalRead($buttonpin);
+		print($var);
 		if($var == 1){
-			print($var);
 			$isFunction = true;
 		}
 	}
@@ -21,4 +21,5 @@ while (true) {
 		print('fire/n');
 		$isFunction = false;
 	}
+
 }
