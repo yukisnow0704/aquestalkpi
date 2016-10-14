@@ -1,6 +1,7 @@
 <?php
 
 $buttonpin=23;
+$isFunction=flase;
 
 wiringPiSetupGpio();
 
