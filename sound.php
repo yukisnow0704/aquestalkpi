@@ -19,7 +19,6 @@ while (true) {
 	}
 
 	if ($isFunction == false) {
-		print($var);
 		$isFunction = false;
 	}
 
