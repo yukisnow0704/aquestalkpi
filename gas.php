@@ -17,7 +17,7 @@ while (true) {
 	}
 
 	if ($isFunction) {
-		print('!!!gas!!!');
+		print('!!!gas!!!/n');
 		$isFunction = false;
 	}
 

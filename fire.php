@@ -17,7 +17,7 @@ while (true) {
 	}
 
 	if ($isFunction) {
-		print('!!!fire!!!');
+		print('!!!fire!!!/n');
 		$isFunction = false;
 	}
 

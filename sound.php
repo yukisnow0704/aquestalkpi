@@ -10,6 +10,8 @@ pinMode($buttonpin, 0);
 
 while (true) {
 	$var = digitalRead($buttonpin);
-	print($var);
+	if ($var == 0) {
+		print('sound now!!/n');
+	}
 
 }
