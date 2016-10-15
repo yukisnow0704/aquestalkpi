@@ -1,6 +1,6 @@
 <?php
 
-$buttonpin=23;
+$buttonpin=24;
 $isFunction=false;
 $var;
 
@@ -17,7 +17,7 @@ while (true) {
 	}
 
 	if ($isFunction) {
-		print('!!!fire!!!');
+		print('!!!gas!!!');
 		$isFunction = false;
 	}
 
