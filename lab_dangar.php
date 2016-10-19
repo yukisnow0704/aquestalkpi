@@ -42,6 +42,7 @@ while (true) {
                         while ($time <= 20) {
                                 sleep(1);
                                 $time += 1;
+                                print($time);
                                 if(digitalRead($soundpin) == 0){
                                         $text = 'サウンドセンサーが稼動しました。危険を感知しています。';
                                         $isFunction = true;
