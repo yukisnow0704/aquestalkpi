@@ -39,18 +39,18 @@ while (true) {
                         $time = 0;
                         print($time);
                         exec("/home/pi/aquestalkpi/AquesTalkPi 20秒間サウンドセンサーが待機します。基本的には静かにお願いします。 | aplay -D plughw:2,0");      
-                        while ($time < 20000000) {
+                        while ($time <= 2000000) {
                                 usleep(1);
                                 $time += 1;
-                                if( $time%1000000 == 0)
+                                if( $time%100000 == 0)
                                         print($time);
                                 if(digitalRead($soundpin) == 0){
                                         $text = 'サウンドセンサーが稼動しました。危険を感知しています。';
                                         $isFunction = true;
-                                        $time = 20000000;
+                                        $time = 2000000;
                                 }
                         }
-                        if($isFunction == false && $time == 20000000)
+                        if($isFunction == false && $time == 2000000)
                                 exec("/home/pi/aquestalkpi/AquesTalkPi サウンドセンサーの起動を停止します。 | aplay -D plughw:2,0");        
 
                 }
