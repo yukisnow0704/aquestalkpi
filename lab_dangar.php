@@ -38,8 +38,8 @@ while (true) {
                 while (digitalRead($touchpin) == 1) {
                         $time = 0;
                         print($time);
-                        exec("/home/pi/aquestalkpi/AquesTalkPi 20秒間サウンドセンサーが待機します。基本的には静かにお願いします。 | aplay -D plughw:2,0");      
-                        while ($time <= 200000) {
+                        exec("/home/pi/aquestalkpi/AquesTalkPi 20秒程度サウンドセンサーが待機します。基本的には静かにお願いします。 | aplay -D plughw:2,0");      
+                        while ($time < 200000) {
                                 usleep(1);
                                 $time += 1;
                                 if( $time%10000 == 0)
