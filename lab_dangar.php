@@ -29,7 +29,7 @@ while (true) {
 
                 if(digitalRead($gaspin) == 0){
                         sleep(1);
-                        if(digitalRead($gaspin) == 1){
+                        if(digitalRead($gaspin) == 0){
                                 $text .= '可燃性のガスが発生しているようです。';
                                 $isFunction = true;
                         }
