@@ -40,13 +40,13 @@ while (true) {
                 while (digitalRead($touchpin) == 1) {
                         exec("/home/pi/aquestalkpi/AquesTalkPi 20秒間サウンドセンサーが待機します。基本的には静かにお願いします。 | aplay -D plughw:2,0");        
                         while ($time <= 20) {
+                                sleep(1);
+                                $time += 1;
                                 if(digitalRead($soundpin) == 0){
                                         $text = 'サウンドセンサーが稼動しました。危険を感知しています。';
                                         $isFunction = true;
                                         $time = 20;
                                 }
-                                sleep(1);
-                                $time += 1;
                         }
                         if($isFunction == false && $time == 20)
                         exec("/home/pi/aquestalkpi/AquesTalkPi サウンドセンサーの起動を停止します。 | aplay -D plughw:2,0");        
