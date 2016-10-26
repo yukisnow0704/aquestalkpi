@@ -1,7 +1,7 @@
 <?php
 
 // DBへ接続
-$mongo = new Mongo("192.168.1.64:27017");
+$mongo = new Mongo("192.168.1.58:27017");
 
 // データベースを指定
 $db = $mongo->selectDB("sample1");
