@@ -15,7 +15,7 @@ $out = file_get_contents('out.wav');
 $doc = array(
         'name' => 'car',
         'date' => date(),
-        'sound' => new MongoBinData($out, MongoBinData::GENERIC),
+        'sound' => $out,
 );
 
 $col->insert($doc);
