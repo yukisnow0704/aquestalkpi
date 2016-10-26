@@ -9,6 +9,17 @@ $db = $mongo->selectDB("sample1");
 // コレクションを指定1
 $col = $db->selectCollection("test1");
 
+exec('arecord -D plughw:1,0 -t wav -f dat -d 3 out.wav');
+
+$out = file_get_contents('out.wav');
+$doc = array(
+        'name' => 'car',
+        'data' => new date(),
+        'sound' => new MongoBinData($out, MongoBinData::GENERIC)
+);
+
+$col->insert($doc);
+
 // コレクションのドキュメントを全件取得
 $cursor = $col->find();
 
