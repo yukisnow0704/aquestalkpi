@@ -51,17 +51,6 @@ while (true) {
                         }
                 }
 
-                if(digitalRead($peoplepin == 1)) {
-                        sleep(1);
-                        if(digitalRead($peoplepin) == 0){
-                                $doc = array( 
-                                        'name' => 'people',
-                                        'date' => date('Y-m-d H:i:s'),
-                                );
-                                $col->insert($doc);
-                        }
-                }
-
                 while (digitalRead($touchpin) == 1) {
                         $time = 0;
                         print($time);
@@ -94,6 +83,16 @@ while (true) {
 
                 }
 
+                if(digitalRead($peoplepin == 1)) {
+                        sleep(10);
+                        if(digitalRead($peoplepin) == 0){
+                                $doc = array( 
+                                        'name' => 'people',
+                                        'date' => date('Y-m-d H:i:s'),
+                                );
+                                $col->insert($doc);
+                        }
+                }
 
         }
 
