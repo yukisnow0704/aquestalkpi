@@ -30,7 +30,7 @@ while (true) {
                                 $isFunction = true;
                                 $doc = array( 
                                         'name' => 'fire',
-                                        'date' => date(),
+                                        'date' => date('Y-m-d H:i:s'),
                                 );
                                 $col->insert($doc);
                         }
@@ -41,13 +41,24 @@ while (true) {
                         if(digitalRead($gaspin) == 0){
                                 $text .= '可燃性のガスが発生しているようです。';
                                 $isFunction = true;
+                                $doc = array( 
+                                        'name' => 'gas',
+                                        'date' => date('Y-m-d H:i:s'),
+                                );
+                                $col->insert($doc);
                         }
                 }
 
                 while (digitalRead($touchpin) == 1) {
                         $time = 0;
                         print($time);
-                        exec("/home/pi/aquestalkpi/AquesTalkPi 20秒程度サウンドセンサーが待機します。基本的には静かにお願いします。 | aplay -D plughw:2,0");      
+                        exec("/home/pi/aquestalkpi/AquesTalkPi 20秒程度サウンドセンサーが待機します。基本的には静かにお願いします。 | aplay -D plughw:2,0");
+                        $doc = array( 
+                                'name' => 'touch',
+                                'date' => date('Y-m-d H:i:s'),
+                        );
+                        $col->insert($doc);
+
                         while ($time < 200000) {
                                 usleep(1);
                                 $time += 1;
@@ -57,6 +68,12 @@ while (true) {
                                         $text = 'サウンドセンサーが稼動しました。危険を感知しています。';
                                         $isFunction = true;
                                         $time = 2000000;
+                                        $isFunction = true;
+                                        $doc = array( 
+                                                'name' => 'sound',
+                                                'date' => date('Y-m-d H:i:s'),
+                                        );
+                                        $col->insert($doc);
                                 }
                         }
                         if($isFunction == false && $time == 200000)
