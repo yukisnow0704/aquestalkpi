@@ -94,7 +94,7 @@ while (true) {
                                 );
                                 $col->insert($doc);
                                 $stack = 0;
-                                $print('people it!!');
+                                print('people it!!');
                         }
                 }
 
