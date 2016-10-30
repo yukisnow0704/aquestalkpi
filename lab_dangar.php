@@ -10,9 +10,8 @@ $isFunction=false;
 $text='';
 
 $mongo = new Mongo("192.168.1.58:27017");
-$fireTable = $mongo->selectDB("fire");
-$gasTable = $mongo->selectDB("gas");
-$soundTable = $mongo->selectDB("sound");
+$db = $mongo->selectDB("sample1");
+$col = $db->selectCollection("senser");
 
 wiringPiSetupGpio();
 
@@ -29,14 +28,11 @@ while (true) {
                         if(digitalRead($firepin) == 1){
                                 $text .= '火が出ているようです。';
                                 $isFunction = true;
-                                exec('arecord -D plughw:1,0 -t wav -f dat -d 3 out.wav');
-
-                                $out = file_get_contents('out.wav');
                                 $doc = array( 
-                                        'name' => 'car',
-                                        'data' => new date(),
-                                        'sound' => new MongoBinData($out, MongoBinData::GENERIC)
+                                        'name' => 'fire',
+                                        'date' => date(),
                                 );
+                                $col->insert($doc);
                         }
                 }
 
