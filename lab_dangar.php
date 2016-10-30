@@ -9,6 +9,7 @@ $peoplepin=6;
 $isFunction=false;
 
 $text='';
+$stack=0;
 
 $mongo = new Mongo("192.168.1.58:27017");
 $db = $mongo->selectDB("sample1");
@@ -84,13 +85,15 @@ while (true) {
                 }
 
                 if(digitalRead($peoplepin == 1)) {
-                        sleep(10);
-                        if(digitalRead($peoplepin) == 0){
+                        sleep(1);
+                        $stack += 1;
+                        if(digitalRead($peoplepin) == 0 && $stack == 10){
                                 $doc = array( 
                                         'name' => 'people',
                                         'date' => date('Y-m-d H:i:s'),
                                 );
                                 $col->insert($doc);
+                                $stack = 0;
                         }
                 }
 
