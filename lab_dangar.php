@@ -14,6 +14,7 @@ $stack=0;
 $mongo = new Mongo("192.168.1.58:27017");
 $db = $mongo->selectDB("sample1");
 $col = $db->selectCollection("senser");
+$people = $db->selectCollection("people");
 
 wiringPiSetupGpio();
 
@@ -91,7 +92,7 @@ while (true) {
                                         'name' => 'people',
                                         'date' => date('Y-m-d H:i:s'),
                                 );
-                                $col->insert($doc);
+                                $people->insert($doc);
                                 $stack = 0;
                                 print('people it!!');
                         }
