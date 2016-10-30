@@ -4,6 +4,7 @@ $firepin=11;
 $gaspin=19;
 $soundpin=8;
 $touchpin=26;
+$peoplepin=6;
 
 $isFunction=false;
 
@@ -19,6 +20,7 @@ pinMode($firepin, 0);
 pinMode($gaspin, 0);
 pinMode($soundpin, 0);
 pinMode($touchpin, 0);
+pinMode($peoplepin, 0);
 
 
 while (true) {
@@ -43,6 +45,17 @@ while (true) {
                                 $isFunction = true;
                                 $doc = array( 
                                         'name' => 'gas',
+                                        'date' => date('Y-m-d H:i:s'),
+                                );
+                                $col->insert($doc);
+                        }
+                }
+
+                if(digitalRead($peoplepin == 1)) {
+                        sleep(1);
+                        if(digitalRead($peoplepin) == 0){
+                                $doc = array( 
+                                        'name' => 'people',
                                         'date' => date('Y-m-d H:i:s'),
                                 );
                                 $col->insert($doc);
