@@ -87,7 +87,7 @@ while (true) {
                 if(digitalRead($peoplepin == 1)) {
                         sleep(0.5);
                         $stack += 1;
-                        if(digitalRead($peoplepin) == 0 && $stack == 500){
+                        if(digitalRead($peoplepin) == 0 && $stack == 250){
                                 $doc = array( 
                                         'name' => 'people',
                                         'date' => date('Y-m-d H:i:s'),
