@@ -85,15 +85,16 @@ while (true) {
                 }
 
                 if(digitalRead($peoplepin == 1)) {
-                        sleep(1);
+                        sleep(0.5);
                         $stack += 1;
-                        if(digitalRead($peoplepin) == 0 && $stack == 10){
+                        if(digitalRead($peoplepin) == 0 && $stack == 20){
                                 $doc = array( 
                                         'name' => 'people',
                                         'date' => date('Y-m-d H:i:s'),
                                 );
                                 $col->insert($doc);
                                 $stack = 0;
+                                $print('people it!!');
                         }
                 }
 
