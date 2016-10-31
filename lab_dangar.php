@@ -11,7 +11,7 @@ $isFunction=false;
 $text='';
 $stack=0;
 
-$mongo = new Mongo("192.168.1.58:27017");
+$mongo = new Mongo("133.88.126.91:27017");
 $db = $mongo->selectDB("sample1");
 $col = $db->selectCollection("senser");
 $people = $db->selectCollection("people");
