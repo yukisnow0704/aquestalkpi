@@ -1,5 +1,5 @@
 <?php
-$ip = '192.168.1.58';
+$ip = '133.88.126.138';
 // DBへ接続
 $mongo = new Mongo( $ip.":27017");
 
@@ -13,12 +13,12 @@ $fs = new MongoGridFS($db, "test2");
 exec('arecord -D plughw:1,0 -t wav -f dat -d 3 out.wav');
 
 $out = file_get_contents('out.wav');
+$outKey = new fs->put('out.wav');
 $doc = array(
         'name' => 'car',
-        'date' => date(),
-        'key' => new fs->put($out);
+        'date' => date('Y-m-d H:i:s'),
+        'key' => $outKey
 );
-
 $col->insert($doc);
 
 // コレクションのドキュメントを全件取得
