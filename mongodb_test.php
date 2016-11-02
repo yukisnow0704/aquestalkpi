@@ -13,7 +13,7 @@ $fs = new MongoGridFS($db, "test2");
 exec('arecord -D plughw:1,0 -t wav -f dat -d 3 out.wav');
 
 $out = file_get_contents('out.wav');
-$outKey = new fs->put('out.wav');
+$outKey = $fs->put('out.wav');
 $doc = array(
         'name' => 'car',
         'date' => date('Y-m-d H:i:s'),
