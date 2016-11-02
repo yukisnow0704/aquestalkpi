@@ -4,15 +4,14 @@ $ip = '133.88.126.138';
 $mongo = new Mongo( $ip.":27017");
 
 // データベースを指定
-$db = $mongo->selectDB("sample1");
+$db = $mongo->selectDB("test");
 
 // コレクションを指定1
 $col = $db->selectCollection("test1");
-$fs = new MongoGridFS($db, "test2");
+$fs = new MongoGridFS($db);
 
 exec('arecord -D plughw:1,0 -t wav -f dat -d 3 out.wav');
 
-$out = file_get_contents('out.wav');
 $outKey = $fs->put('out.wav');
 $doc = array(
         'name' => 'car',
