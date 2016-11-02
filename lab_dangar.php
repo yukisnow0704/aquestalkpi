@@ -15,6 +15,7 @@ $mongo = new Mongo("133.88.126.91:27017");
 $db = $mongo->selectDB("sample1");
 $col = $db->selectCollection("senser");
 $people = $db->selectCollection("people");
+$soundfs = new MongoGridFS($db, "sounds");
 
 wiringPiSetupGpio();
 
@@ -57,7 +58,7 @@ while (true) {
                         $time = 0;
                         print($time);
                         exec("/home/pi/aquestalkpi/AquesTalkPi 20秒程度サウンドセンサーが待機します。基本的には静かにお願いします。 | aplay -D plughw:2,0");
-                        $doc = array( 
+                        $doc = array(
                                 'name' => 'touch',
                                 'date' => date('Y-m-d H:i:s'),
                         );
@@ -71,11 +72,18 @@ while (true) {
                                 if(digitalRead($soundpin) == 0){
                                         $text = 'サウンドセンサーが稼動しました。危険を感知しています。';
                                         $isFunction = true;
-                                        $time = 2000000;
+                                        
+                                        exec('arecord -D plughw:1,0 -t wav -f dat -d 3 out.wav');
+                                        $outfile = file_get_contents('out.wav');
+                                        $keyid = $soundfs->put($outfile);
+
+                                        $time = 0;
                                         $isFunction = true;
+
                                         $doc = array( 
                                                 'name' => 'sound',
                                                 'date' => date('Y-m-d H:i:s'),
+                                                'soundId' => $keyid;
                                         );
                                         $col->insert($doc);
                                 }
