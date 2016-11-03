@@ -10,12 +10,13 @@ $isFunction=false;
 
 $text='';
 $stack=0;
+$ip = '133.88.126.138';
 
-$mongo = new Mongo("133.88.126.91:27017");
+$mongo = new Mongo($ip.":27017");
 $db = $mongo->selectDB("sample1");
 $col = $db->selectCollection("senser");
 $people = $db->selectCollection("people");
-$soundfs = new MongoGridFS($db, "sounds");
+$fs = new MongoGridFS($db);
 
 wiringPiSetupGpio();
 
@@ -33,9 +34,15 @@ while (true) {
                         if(digitalRead($firepin) == 1){
                                 $text .= '火が出ているようです。';
                                 $isFunction = true;
+
+                                exec('arecord -D plughw:1,0 -t wav -f dat -d 3 out.wav');
+                                $outKey = $fs->put('out.wav');
+
                                 $doc = array( 
                                         'name' => 'fire',
-                                        'date' => date('Y-m-d H:i:s'),
+                                        'time' => date('Y-m-d H:i:s'),
+                                        'data_id' => $outKey,
+                                        'data_name' => 'out.wav',
                                 );
                                 $col->insert($doc);
                         }
@@ -46,9 +53,15 @@ while (true) {
                         if(digitalRead($gaspin) == 0){
                                 $text .= '可燃性のガスが発生しているようです。';
                                 $isFunction = true;
+
+                                exec('arecord -D plughw:1,0 -t wav -f dat -d 3 out.wav');
+                                $outKey = $fs->put('out.wav');
+                                
                                 $doc = array( 
                                         'name' => 'gas',
                                         'date' => date('Y-m-d H:i:s'),
+                                        'data_id' => $outKey,
+                                        'data_name' => 'out.wav',
                                 );
                                 $col->insert($doc);
                         }
@@ -57,7 +70,7 @@ while (true) {
                 while (digitalRead($touchpin) == 1) {
                         $time = 0;
                         print($time);
-                        exec("/home/pi/aquestalkpi/AquesTalkPi 20秒程度サウンドセンサーが待機します。基本的には静かにお願いします。 | aplay -D plughw:2,0");
+                        exec("/home/pi/aquestalkpi/AquesTalkPi 20秒音を取得、静かに！ | aplay -D plughw:2,0");
                         $doc = array(
                                 'name' => 'touch',
                                 'date' => date('Y-m-d H:i:s'),
@@ -72,10 +85,9 @@ while (true) {
                                 if(digitalRead($soundpin) == 0){
                                         $text = 'サウンドセンサーが稼動しました。危険を感知しています。';
                                         $isFunction = true;
-                                        
+
                                         exec('arecord -D plughw:1,0 -t wav -f dat -d 3 out.wav');
-                                        $outfile = file_get_contents('out.wav');
-                                        $keyid = $soundfs->put($outfile);
+                                        $outKey = $fs->put('out.wav');
 
                                         $time = 0;
                                         $isFunction = true;
@@ -83,7 +95,8 @@ while (true) {
                                         $doc = array( 
                                                 'name' => 'sound',
                                                 'date' => date('Y-m-d H:i:s'),
-                                                'soundId' => $keyid;
+                                                'data_id' => $outKey,
+                                                'data_name' => 'out.wav',
                                         );
                                         $col->insert($doc);
                                 }
@@ -96,13 +109,18 @@ while (true) {
                 if(digitalRead($peoplepin) == 1) {
                         sleep(1);
                         if(digitalRead($peoplepin) == 1){
+
+                                exec('arecord -D plughw:1,0 -t wav -f dat -d 3 out.wav');
+                                $outKey = $fs->put('out.wav');
+
                                 $doc = array( 
                                         'name' => 'people',
                                         'date' => date('Y-m-d H:i:s'),
+                                        'data_id' => $outKey,
+                                        'data_name' => 'out.wav',
                                 );
                                 $people->insert($doc);
                                 $stack = 0;
-                                print('people it!!');
                         }
                 }
 
