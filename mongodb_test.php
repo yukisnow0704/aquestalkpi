@@ -1,7 +1,7 @@
 <?php
 $ip = '133.88.121.124';
 // DBへ接続
-$mongo = new Mongo( $ip.":27017");
+$mongo = new Mongo($ip.":27017");
 
 // データベースを指定
 $db = $mongo->selectDB("test");

@@ -10,7 +10,7 @@ $isFunction=false;
 
 $text='';
 $stack=0;
-$ip = '133.88.126.138';
+$ip = '133.88.121.124';
 
 $mongo = new Mongo($ip.":27017");
 $db = $mongo->selectDB("sample1");
