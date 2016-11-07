@@ -70,7 +70,7 @@ while (true) {
                 while (digitalRead($touchpin) == 1) {
                         $time = 0;
                         print($time);
-                        exec("/home/pi/aquestalkpi/AquesTalkPi 20秒音を取得、静かに！ | aplay -D plughw:1,0");
+                        exec("/home/pi/aquestalkpi/AquesTalkPi 20秒音を取得、静かに！ | aplay -D plughw:2,0");
                         $doc = array(
                                 'name' => 'touch',
                                 'date' => date('Y-m-d H:i:s'),
@@ -102,7 +102,7 @@ while (true) {
                                 }
                         }
                         if($isFunction == false && $time == 200000)
-                                exec("/home/pi/aquestalkpi/AquesTalkPi サウンドセンサーの起動を停止します。 | aplay -D plughw:1,0");        
+                                exec("/home/pi/aquestalkpi/AquesTalkPi サウンドセンサーの起動を停止します。 | aplay -D plughw:2,0");        
 
                 }
 
@@ -127,7 +127,7 @@ while (true) {
         }
 
         if ($isFunction) {
-                $messagePath = "/home/pi/aquestalkpi/AquesTalkPi " . $text . " | aplay -D plughw:1,0";
+                $messagePath = "/home/pi/aquestalkpi/AquesTalkPi " . $text . " | aplay -D plughw:2,0";
                 exec($messagePath);
 
                 $text = '';
