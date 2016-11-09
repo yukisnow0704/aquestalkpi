@@ -112,6 +112,7 @@ while (true) {
 
                                 exec('fswebcam -d v4l2:/dev/video0 out.jpg');
                                 $outKey = $fs->put('out.jpg');
+                                exec('sh /home/pi/usbreset.sh');
                                 $doc = array( 
                                         'name' => 'people',
                                         'date' => date('Y-m-d H:i:s'),
