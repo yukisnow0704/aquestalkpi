@@ -108,11 +108,10 @@ while (true) {
 
                 if(digitalRead($peoplepin) == 1) {
                         sleep(1);
-                        if(digitalRead($peoplepin) == 1){
+                        if(digitalRead($peoplepin) == 1　&& $stack == 10){
 
                                 exec('fswebcam -d v4l2:/dev/video0 out.jpg');
                                 $outKey = $fs->put('out.jpg');
-                                exec('sh usbreset.sh');
                                 $doc = array( 
                                         'name' => 'people',
                                         'date' => date('Y-m-d H:i:s'),
