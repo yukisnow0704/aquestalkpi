@@ -110,9 +110,9 @@ while (true) {
                         sleep(1);
                         if(digitalRead($peoplepin) == 1){
 
-                                exec('sudo fswebcam -d v4l2:/dev/video1 out.jpg');
+                                exec('fswebcam -d v4l2:/dev/video0 out.jpg');
                                 $outKey = $fs->put('out.jpg');
-
+                                exec('sh usbreset.sh');
                                 $doc = array( 
                                         'name' => 'people',
                                         'date' => date('Y-m-d H:i:s'),
