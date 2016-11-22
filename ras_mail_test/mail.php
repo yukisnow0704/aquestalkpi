@@ -13,7 +13,8 @@ $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
 $mail->SMTPAuth = true;
 $mail->CharSet = 'utf-8';
 $mail->SMTPSecure = 'tls';
-$mail->Host = "64.233.188.108:465";
+$mail->Host = "64.233.188.108";
+$mail->Port = 587;
 $mail->IsHTML(false);
 $mail->Username = $smtp_user;
 $mail->Password = $smtp_password; 
