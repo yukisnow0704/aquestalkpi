@@ -46,7 +46,26 @@ while (true) {
                                 $isFunction = true;
 
                                 //メールの配信
-                                mail($subject, $body);
+                                exec('fswebcam -d v4l2:/dev/video0 out.jpg');
+                                exec('sh /home/pi/usbreset.sh');
+                                
+                                $mail = new PHPMailer();
+                                $mail->IsSMTP();
+                                $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+                                $mail->SMTPAuth = true;
+                                $mail->CharSet = 'utf-8';
+                                $mail->SMTPSecure = 'tls';
+                                $mail->Host = "smtp.gmail.com";
+                                $mail->Port = 587;
+                                $mail->IsHTML(false);
+                                $mail->Username = $smtp_user;
+                                $mail->Password = $smtp_password; 
+                                $mail->SetFrom($smtp_user);
+                                $mail->From     = $from;
+                                $mail->Subject = $subject;
+                                $mail->Body = $body;
+                                $mail->addAttachment('out.jpg');
+                                $mail->AddAddress('yukisnow0704@gmail.com');
 
                                 //音声を取得して配信
 
@@ -72,8 +91,29 @@ while (true) {
 
                                 $isFunction = true;
 
-                                mail($subject, $body);
+                                //メールの配信
+                                exec('fswebcam -d v4l2:/dev/video0 out.jpg');
+                                exec('sh /home/pi/usbreset.sh');
+                                
+                                $mail = new PHPMailer();
+                                $mail->IsSMTP();
+                                $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+                                $mail->SMTPAuth = true;
+                                $mail->CharSet = 'utf-8';
+                                $mail->SMTPSecure = 'tls';
+                                $mail->Host = "smtp.gmail.com";
+                                $mail->Port = 587;
+                                $mail->IsHTML(false);
+                                $mail->Username = $smtp_user;
+                                $mail->Password = $smtp_password; 
+                                $mail->SetFrom($smtp_user);
+                                $mail->From     = $from;
+                                $mail->Subject = $subject;
+                                $mail->Body = $body;
+                                $mail->addAttachment('out.jpg');
+                                $mail->AddAddress('yukisnow0704@gmail.com');
 
+                                //音声を取得して配信                                
                                 exec('arecord -D plughw:1,0 -t wav -f dat -d 3 out.wav');
                                 $outKey = $fs->put('out.wav');
                                 
@@ -109,8 +149,29 @@ while (true) {
 
                                         $isFunction = true;
 
-                                        mail($subject, $body);
+                                        //メールの配信
+                                        exec('fswebcam -d v4l2:/dev/video0 out.jpg');
+                                        exec('sh /home/pi/usbreset.sh');
                                         
+                                        $mail = new PHPMailer();
+                                        $mail->IsSMTP();
+                                        $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+                                        $mail->SMTPAuth = true;
+                                        $mail->CharSet = 'utf-8';
+                                        $mail->SMTPSecure = 'tls';
+                                        $mail->Host = "smtp.gmail.com";
+                                        $mail->Port = 587;
+                                        $mail->IsHTML(false);
+                                        $mail->Username = $smtp_user;
+                                        $mail->Password = $smtp_password; 
+                                        $mail->SetFrom($smtp_user);
+                                        $mail->From     = $from;
+                                        $mail->Subject = $subject;
+                                        $mail->Body = $body;
+                                        $mail->addAttachment('out.jpg');
+                                        $mail->AddAddress('yukisnow0704@gmail.com');
+
+                                        //音声を取得して配信
                                         exec('arecord -D plughw:1,0 -t wav -f dat -d 3 out.wav');
                                         $outKey = $fs->put('out.wav');
 
@@ -159,41 +220,4 @@ while (true) {
                 $isFunction = false;
         }
 
-}
-
-public function mail($subject, $body){
-        $fromname = "me";
-        $from = "sist.kudolab@gmail.com";
-        $smtp_user = "sist.kudolab@gmail.com";
-        $smtp_password = "kudo0401";
-
-        exec('fswebcam -d v4l2:/dev/video0 out.jpg');
-        exec('sh /home/pi/usbreset.sh');
-        
-        $mail = new PHPMailer();
-        $mail->IsSMTP();
-        $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
-        $mail->SMTPAuth = true;
-        $mail->CharSet = 'utf-8';
-        $mail->SMTPSecure = 'tls';
-        $mail->Host = "smtp.gmail.com";
-        $mail->Port = 587;
-        $mail->IsHTML(false);
-        $mail->Username = $smtp_user;
-        $mail->Password = $smtp_password; 
-        $mail->SetFrom($smtp_user);
-        $mail->From     = $from;
-        $mail->Subject = $subject;
-        $mail->Body = $body;
-        $mail->addAttachment('out.jpg');
-        $mail->AddAddress('yukisnow0704@gmail.com');
-
-        if( !$mail -> Send() ){
-            $message  = "Message was not sent<br/ >";
-            $message .= "Mailer Error: " . $mailer->ErrorInfo;
-        } else {
-            $message  = "Message has been sent";
-        }
-
-        return
 }
