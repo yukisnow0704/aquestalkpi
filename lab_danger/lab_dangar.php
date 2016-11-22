@@ -67,6 +67,13 @@ while (true) {
                                 $mail->addAttachment('out.jpg');
                                 $mail->AddAddress('yukisnow0704@gmail.com');
 
+                                if( !$mail -> Send() ){
+                                    $message  = "Message was not sent<br/ >";
+                                    $message .= "Mailer Error: " . $mailer->ErrorInfo;
+                                } else {
+                                    $message  = "Message has been sent";
+                                }
+                                
                                 //音声を取得して配信
 
                                 exec('arecord -D plughw:1,0 -t wav -f dat -d 3 out.wav');
@@ -112,6 +119,13 @@ while (true) {
                                 $mail->Body = $body;
                                 $mail->addAttachment('out.jpg');
                                 $mail->AddAddress('yukisnow0704@gmail.com');
+
+                                if( !$mail -> Send() ){
+                                    $message  = "Message was not sent<br/ >";
+                                    $message .= "Mailer Error: " . $mailer->ErrorInfo;
+                                } else {
+                                    $message  = "Message has been sent";
+                                }
 
                                 //音声を取得して配信                                
                                 exec('arecord -D plughw:1,0 -t wav -f dat -d 3 out.wav');
@@ -171,6 +185,13 @@ while (true) {
                                         $mail->addAttachment('out.jpg');
                                         $mail->AddAddress('yukisnow0704@gmail.com');
 
+                                        if( !$mail -> Send() ){
+                                            $message  = "Message was not sent<br/ >";
+                                            $message .= "Mailer Error: " . $mailer->ErrorInfo;
+                                        } else {
+                                            $message  = "Message has been sent";
+                                        }
+                                        
                                         //音声を取得して配信
                                         exec('arecord -D plughw:1,0 -t wav -f dat -d 3 out.wav');
                                         $outKey = $fs->put('out.wav');
