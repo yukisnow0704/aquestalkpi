@@ -13,7 +13,7 @@ $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
 $mail->SMTPAuth = true;
 $mail->CharSet = 'utf-8';
 $mail->SMTPSecure = 'tls';
-$mail->Host = "ssl:smtp.gmail.com";
+$mail->Host = "ssl:74.125.23.108";
 $mail->Port = 465;
 $mail->IsHTML(false);
 $mail->Username = $smtp_user;
