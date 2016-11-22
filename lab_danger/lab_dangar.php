@@ -1,4 +1,11 @@
 <?php
+require_once ( 'PHPMailerAutoload.php' );
+$subject = "タイトル";
+$body = "メール本文";
+$fromname = "工藤研究室緊急配信システム";
+$from = "sist.kudolab@gmail.com";
+$smtp_user = "sist.kudolab@gmail.com";
+$smtp_password = "kudo0401";
 
 $firepin=11;
 $gaspin=19;
@@ -33,7 +40,15 @@ while (true) {
                         sleep(1);
                         if(digitalRead($firepin) == 1){
                                 $text .= '火が出ているようです。';
+                                $subject = "火炎";
+                                $body = "火炎センサーが感知しています。添付画像を確認してください";
+
                                 $isFunction = true;
+
+                                //メールの配信
+                                mail($subject, $body);
+
+                                //音声を取得して配信
 
                                 exec('arecord -D plughw:1,0 -t wav -f dat -d 3 out.wav');
                                 $outKey = $fs->put('out.wav');
@@ -52,7 +67,12 @@ while (true) {
                         sleep(1);
                         if(digitalRead($gaspin) == 0){
                                 $text .= '可燃性のガスが発生しているようです。';
+                                $subject = "ガス";
+                                $body = "ガスセンサーが感知しています。添付画像を確認してください";
+
                                 $isFunction = true;
+
+                                mail($subject, $body);
 
                                 exec('arecord -D plughw:1,0 -t wav -f dat -d 3 out.wav');
                                 $outKey = $fs->put('out.wav');
@@ -84,8 +104,13 @@ while (true) {
                                         print($time);
                                 if(digitalRead($soundpin) == 0){
                                         $text = 'サウンドセンサーが稼動しました。危険を感知しています。';
+                                        $subject = "サウンド";
+                                        $body = "サウンドセンサーが感知しています。添付画像を確認してください";
+
                                         $isFunction = true;
 
+                                        mail($subject, $body);
+                                        
                                         exec('arecord -D plughw:1,0 -t wav -f dat -d 3 out.wav');
                                         $outKey = $fs->put('out.wav');
 
@@ -108,7 +133,7 @@ while (true) {
 
                 if(digitalRead($peoplepin) == 1) {
                         sleep(1);
-                        if(digitalRead($peoplepin) == 1 && $stack == 10){
+                        if(digitalRead($peoplepin) == 1){
 
                                 exec('fswebcam -d v4l2:/dev/video0 out.jpg');
                                 $outKey = $fs->put('out.jpg');
@@ -134,4 +159,41 @@ while (true) {
                 $isFunction = false;
         }
 
+}
+
+public function mail($subject, $body){
+        $fromname = "me";
+        $from = "sist.kudolab@gmail.com";
+        $smtp_user = "sist.kudolab@gmail.com";
+        $smtp_password = "kudo0401";
+
+        exec('fswebcam -d v4l2:/dev/video0 out.jpg');
+        exec('sh /home/pi/usbreset.sh');
+        
+        $mail = new PHPMailer();
+        $mail->IsSMTP();
+        $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+        $mail->SMTPAuth = true;
+        $mail->CharSet = 'utf-8';
+        $mail->SMTPSecure = 'tls';
+        $mail->Host = "smtp.gmail.com";
+        $mail->Port = 587;
+        $mail->IsHTML(false);
+        $mail->Username = $smtp_user;
+        $mail->Password = $smtp_password; 
+        $mail->SetFrom($smtp_user);
+        $mail->From     = $from;
+        $mail->Subject = $subject;
+        $mail->Body = $body;
+        $mail->addAttachment('out.jpg');
+        $mail->AddAddress('yukisnow0704@gmail.com');
+
+        if( !$mail -> Send() ){
+            $message  = "Message was not sent<br/ >";
+            $message .= "Mailer Error: " . $mailer->ErrorInfo;
+        } else {
+            $message  = "Message has been sent";
+        }
+
+        return
 }
