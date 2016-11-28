@@ -141,10 +141,10 @@ while (true) {
                         }
                 }
 
-                while (digitalRead($touchpin) == 1) {
+                if (digitalRead($touchpin) == 1) {
                         $time = 0;
                         print($time);
-                        exec("/home/pi/aquestalkpi/AquesTalkPi 20秒音を取得、静かに！ | aplay -D plughw:2,0");
+                        exec("/home/pi/aquestalkpi/AquesTalkPi 20秒音を取得、静かに！ | aplay -D plughw:3,0");
                         $doc = array(
                                 'name' => 'touch',
                                 'date' => date('Y-m-d H:i:s'),
@@ -156,7 +156,7 @@ while (true) {
                                 $time += 1;
                                 if( $time%10000 == 0)
                                         print($time);
-                                if(digitalRead($soundpin) == 0){
+                                if(digitalRead($soundpin) == 1){
                                         $text = 'サウンドセンサーが稼動しました。危険を感知しています。';
                                         $subject = "サウンド";
                                         $body = "サウンドセンサーが感知しています。添付画像を確認してください";
@@ -206,10 +206,12 @@ while (true) {
                                                 'data_name' => 'out.wav',
                                         );
                                         $col->insert($doc);
+
+                                        $time = 200000;
                                 }
                         }
                         if($isFunction == false && $time == 200000)
-                                exec("/home/pi/aquestalkpi/AquesTalkPi サウンドセンサーの起動を停止します。 | aplay -D plughw:2,0");        
+                                exec("/home/pi/aquestalkpi/AquesTalkPi サウンドセンサーの起動を停止します。 | aplay -D plughw:3,0");        
 
                 }
 
@@ -234,7 +236,7 @@ while (true) {
         }
 
         if ($isFunction) {
-                $messagePath = "/home/pi/aquestalkpi/AquesTalkPi " . $text . " | aplay -D plughw:2,0";
+                $messagePath = "/home/pi/aquestalkpi/AquesTalkPi " . $text . " | aplay -D plughw:3,0";
                 exec($messagePath);
 
                 $text = '';
