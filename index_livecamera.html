@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>yuki sample motor proguram</title>
+        <meta charset="utf-8">
+</head>
+<body onload="createImageLayer();">
+        <script type="text/javascript" src="http://133.88.121.141:3000/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript">
+                $(function(){
+                        var ip_address = '133.88.121.141';
+                        var port = '3000';
+
+			$(document).ready(function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/start",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+			});
+			
+			function pageout(){
+				$.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/end",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+				return true;
+			}
+
+    var loc=false;
+    $(window).bind("beforeunload", function(e) {
+        loc = pageout();
+	loc = true;
+        if (!loc) {
+            return "入力は完了していません｡";
+        }
+    });
+
+                        $('tbody #up').on('mousedown', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/up",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        }).on('mouseup', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/stop",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        });
+
+                        $('tbody #down').on('mousedown', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/down",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        }).on('mouseup', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/stop",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        });
+
+                        $('tbody #leftUp').on('mousedown', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/leftUp",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        }).on('mouseup', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/stop",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        });
+
+                        $('tbody #leftDown').on('mousedown', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/leftDown",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        }).on('mouseup', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/stop",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        });
+
+                        $('tbody #rightUp').on('mousedown', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/rightUp",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        }).on('mouseup', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/stop",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        });
+
+                        $('tbody #rightDown').on('mousedown', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/rightDown",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        }).on('mouseup', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/stop",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        });
+
+
+                        $('tbody #stop').on('click', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/stop",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        });
+
+                        $('#talk').on('click',function(){
+                                var message = $('#message').val();
+				if(message != ''){
+                                	var text = $.ajax({
+                                        	url: "http://" + ip_address + ":" + port + "/talk",
+                                        	type: 'POST',
+                                        	dataType: 'json',
+                                        	data: {message: message},
+                                	});
+				}
+                        });
+                        $('#say').on('click', function(){
+                                $.ajax({
+                                        url: "http://" + ip_address + ":" + port + "/say",
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        data: null,
+                                });
+                        });
+                });
+        </script>
+        <script type="text/javascript">
+        /* Copyright (C) 2007 Richard Atterer, richard©atterer.net
+           This program is free software; you can redistribute it and/or modify it
+           under the terms of the GNU General Public License, version 2. See the file
+           COPYING for details. */
+        var imageNr = 0; // Serial number of current image
+        var finished = new Array(); // References to img objects which have finished downloading
+        var paused = false;
+        function createImageLayer() {
+          var img = new Image();
+          img.style.position = "absolute";
+          img.style.top = 8;
+          img.style.left = 8;
+          img.style.zIndex = -1;
+          img.onload = imageOnload;
+          img.onclick = imageOnclick;
+          img.src = "./?action=snapshot&n=" + (++imageNr);
+          var webcam = document.getElementById("webcam");
+          webcam.insertBefore(img, webcam.firstChild);
+        }
+        // Two layers are always present (except at the very beginning), to avoid flicker
+        function imageOnload() {
+          this.style.zIndex = imageNr; // Image finished, bring to front!
+          while (1 < finished.length) {
+            var del = finished.shift(); // Delete old image(s) from document
+            del.parentNode.removeChild(del);
+          }
+          finished.push(this);
+          if (!paused) createImageLayer();
+        }
+        function imageOnclick() { // Clicking on the image will pause the stream
+          paused = !paused;
+          if (!paused) createImageLayer();
+        }
+        </script>
+        <table id="stop" style="position: absolute;z-index: 2147483647">
+                <tbody>
+                        <tr>
+                                <td>
+                                        <img id="leftUp" src="http://133.88.121.141:3000/img/leftUp.png" width="209px" height="230px">
+                                </td>
+                                <td>
+                                        <img id="up" src="http://133.88.121.141:3000/img/up.png" width="209px" height="230px">
+                                </td>
+                                <td>
+                                        <img id="rightUp" src="http://133.88.121.141:3000/img/rightUp.png" width="209px" height="230px">
+                                </td>
+                        </tr>
+                        <tr>
+                                <td>
+                                        <img id="leftDown" src="http://133.88.121.141:3000/img/leftDown.png" width="209px" height="230px">
+                                </td>
+                                <td>
+                                        <img id="down" src="http://133.88.121.141:3000/img/down.png" width="209px" height="230px">
+                                </td>
+                                <td>
+                                        <img id="rightDown" src="http://133.88.121.141:3000/img/rightDown.png" width="209px" height="230px">
+                                </td>
+                        </tr>
+                </tbody>
+        </table>
+        <div id="webcam"><noscript><img src="./?action=snapshot" /></noscript></div>
+
+        <div style="position: absolute; top: 500px;">
+                <input id="message" type="text" name="message" value="">
+                <input id="talk" type="submit" name="submit" value="話す">
+        </div>
+	<div style="position: absolute; top: 522px;">
+                <input id="say" type="submit" name="submit" value="こっちをみろ">
+        </div>
+
+</body>
+</html>
+
+
