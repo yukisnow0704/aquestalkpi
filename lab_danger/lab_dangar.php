@@ -38,9 +38,6 @@ function send_mail($subject, $body) {
     $from = "sist.kudolab@gmail.com";
     $smtp_user = "sist.kudolab@gmail.com";
     $smtp_password = "kudo0401";
-
-    exec('fswebcam -d v4l2:/dev/video0 out.jpg');
-    exec('sh /home/pi/usbreset.sh');
     
     $mail = new PHPMailer();
     $mail->IsSMTP();
@@ -69,11 +66,7 @@ function send_mail($subject, $body) {
 
 }
 
-function senser_store($name) {
-
-    exec('arecord -D plughw:1,0 -t wav -f dat -d 3 out.wav');
-    $outKey = $fs->put('out.wav');
-    $outImageKey = $fs->put('out.jpg');
+function db_array($outKey, $outImageKey, $name) {
 
     $doc = array( 
             'name' => $name,
@@ -83,7 +76,8 @@ function senser_store($name) {
             'img_id' => $outImageKey,
             'img_name' => 'out.jpg',
     );
-    $col->insert($doc);
+    
+    return $doc;
 
 }
 
@@ -99,11 +93,18 @@ while (true) {
 
                 $isFunction = true;
 
+                exec('arecord -D plughw:1,0 -t wav -f dat -d 3 out.wav');
+                exec('fswebcam -d v4l2:/dev/video0 out.jpg');
+                exec('sh /home/pi/usbreset.sh');
+
                 //メールの配信
                 send_mail($subject, $body);
                 
-                //音声を取得して配信
-                senser_store($name);
+                //DBに格納
+                $outKey = $fs->put('out.wav');
+                $outImageKey = $fs->put('out.jpg');
+                $doc = senser_store($outKey, $outImageKey, $name);
+                $col->insert($doc);
 
             }
         }
@@ -118,11 +119,18 @@ while (true) {
 
                 $isFunction = true;
 
+                exec('arecord -D plughw:1,0 -t wav -f dat -d 3 out.wav');
+                exec('fswebcam -d v4l2:/dev/video0 out.jpg');
+                exec('sh /home/pi/usbreset.sh');
+
                 //メールの配信
                 send_mail($subject, $body);
 
                 //音声を取得して配信                                
-                senser_store($name);
+                $outKey = $fs->put('out.wav');
+                $outImageKey = $fs->put('out.jpg');
+                $doc = senser_store($outKey, $outImageKey, $name);
+                $col->insert($doc);
 
             }
         }
@@ -150,11 +158,18 @@ while (true) {
 
                     $isFunction = true;
 
+                    exec('arecord -D plughw:1,0 -t wav -f dat -d 3 out.wav');
+                    exec('fswebcam -d v4l2:/dev/video0 out.jpg');
+                    exec('sh /home/pi/usbreset.sh');
+
                     //メールの配信
                     send_mail($subject, $body);
                     
                     //音声を取得して配信
-                    senser_store($name);
+                    $outKey = $fs->put('out.wav');
+                    $outImageKey = $fs->put('out.jpg');
+                    $doc = senser_store($outKey, $outImageKey, $name);
+                    $col->insert($doc);
 
                     $time = 200000;
                 }
