@@ -8,6 +8,7 @@ $soundpin=8;
 $touchpin=26;
 $peoplepin=6;
 $callpin=20;
+$calloutput=3;
 
 wiringPiSetupGpio();
 
@@ -17,6 +18,7 @@ pinMode($soundpin, 0);
 pinMode($touchpin, 0);
 pinMode($peoplepin, 0);
 pinMode($callpin, 0);
+pinMode($calloutput, 0);
 
 //管理用
 $isFunction=false;
