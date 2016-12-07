@@ -1,6 +1,6 @@
 <?php
 
-$buttonpin=8;
+$buttonpin=11;
 $var;
 
 wiringPiSetupGpio();
