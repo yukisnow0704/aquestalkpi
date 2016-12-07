@@ -18,7 +18,7 @@ pinMode($soundpin, 0);
 pinMode($touchpin, 0);
 pinMode($peoplepin, 0);
 pinMode($callpin, 0);
-pinMode($calloutput, 0);
+pinMode($calloutput, 1);
 
 //管理用
 $isFunction=false;
@@ -87,7 +87,7 @@ function db_array($outKey, $outImageKey, $name) {
 }
 
 while (true) {
-    if($isFunction == false) {
+    while($isFunction == false) {
         if(digitalRead($firepin) == 1){
             sleep(1);
             if(digitalRead($firepin) == 1){
