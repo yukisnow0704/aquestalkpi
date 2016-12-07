@@ -7,6 +7,7 @@ $gaspin=19;
 $soundpin=8;
 $touchpin=26;
 $peoplepin=6;
+$callpin=20;
 
 wiringPiSetupGpio();
 
@@ -15,6 +16,7 @@ pinMode($gaspin, 0);
 pinMode($soundpin, 0);
 pinMode($touchpin, 0);
 pinMode($peoplepin, 0);
+pinMode($callpin, 0);
 
 //管理用
 $isFunction=false;
@@ -32,7 +34,7 @@ $people = $db->selectCollection("people");
 $fs = new MongoGridFS($db);
 
 //メール配信機能
-function send_mail($subject, $body) {
+function send_mail($subject, $body, $photo) {
 
     $fromname = "工藤研究室緊急配信システム";
     $from = "sist.kudolab@gmail.com";
@@ -54,7 +56,8 @@ function send_mail($subject, $body) {
     $mail->From     = $from;
     $mail->Subject = $subject;
     $mail->Body = $body;
-    $mail->addAttachment('out.jpg');
+    if($photo)
+        $mail->addAttachment('out.jpg');
     $mail->AddAddress('yukisnow0704@gmail.com');
 
     if( !$mail -> Send() ){
@@ -82,7 +85,7 @@ function db_array($outKey, $outImageKey, $name) {
 }
 
 while (true) {
-    while ($isFunction == false) {
+    if($isFunction == false) {
         if(digitalRead($firepin) == 1){
             sleep(1);
             if(digitalRead($firepin) == 1){
@@ -98,12 +101,12 @@ while (true) {
                 exec('sh /home/pi/usbreset.sh');
 
                 //メールの配信
-                send_mail($subject, $body);
+                send_mail($subject, $body, true);
                 
                 //DBに格納
                 $outKey = $fs->put('out.wav');
                 $outImageKey = $fs->put('out.jpg');
-                $doc = senser_store($outKey, $outImageKey, $name);
+                $doc = db_array($outKey, $outImageKey, $name);
                 $col->insert($doc);
 
             }
@@ -124,12 +127,12 @@ while (true) {
                 exec('sh /home/pi/usbreset.sh');
 
                 //メールの配信
-                send_mail($subject, $body);
+                send_mail($subject, $body, true);
 
                 //音声を取得して配信                                
                 $outKey = $fs->put('out.wav');
                 $outImageKey = $fs->put('out.jpg');
-                $doc = senser_store($outKey, $outImageKey, $name);
+                $doc = db_array($outKey, $outImageKey, $name);
                 $col->insert($doc);
 
             }
@@ -163,12 +166,12 @@ while (true) {
                     exec('sh /home/pi/usbreset.sh');
 
                     //メールの配信
-                    send_mail($subject, $body);
+                    send_mail($subject, $body, true);
                     
                     //音声を取得して配信
                     $outKey = $fs->put('out.wav');
                     $outImageKey = $fs->put('out.jpg');
-                    $doc = senser_store($outKey, $outImageKey, $name);
+                    $doc = db_array($outKey, $outImageKey, $name);
                     $col->insert($doc);
 
                     $time = 200000;
@@ -195,6 +198,18 @@ while (true) {
                     $people->insert($doc);
                     $stack = 0;
             }
+        }
+
+        if(digitalRead($callpin) == 1){
+            $text .= '集合メールを発信しました';
+            $subject = "集合";
+            $body = "集合メールが発信されました。研究室へ集まりましょう！";
+
+            $isFunction = true;
+
+            //メールの配信
+            send_mail($subject, $body, false);
+
         }
 
     }
