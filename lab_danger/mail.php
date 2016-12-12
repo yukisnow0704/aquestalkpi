@@ -22,6 +22,13 @@ $mail->SetFrom($smtp_user);
 $mail->From     = $from;
 $mail->Subject = $subject;
 $mail->Body = $body;
+$mail->SMTPOptions = array(
+    'ssl' => array(
+        'verify_peer' => false,
+        'verify_peer_name' => false,
+        'allow_self_signed' => true
+    )
+);
 $mail->AddAddress('yukisnow0704@gmail.com');
 
 if( !$mail -> Send() ){

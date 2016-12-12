@@ -53,12 +53,20 @@ function send_mail($subject, $body, $photo) {
     $mail->Username = $smtp_user;
     $mail->Password = $smtp_password; 
     $mail->SetFrom($smtp_user);
-    $mail->From     = $from;
+    $mail->From = $from;
     $mail->Subject = $subject;
     $mail->Body = $body;
+    $mail->SMTPOptions = array(
+        'ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+        )
+    );
     if($photo)
         $mail->addAttachment('out.jpg');
     $mail->AddAddress('yukisnow0704@gmail.com');
+    $mail->AddAddress('lilac-stars@ezweb.ne.jp');
 
     if( !$mail -> Send() ){
         $message  = "Message was not sent<br/ >";
