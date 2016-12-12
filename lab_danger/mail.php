@@ -30,6 +30,10 @@ $mail->SMTPOptions = array(
     )
 );
 $mail->AddAddress('yukisnow0704@gmail.com');
+$mail->AddAddress('sdvx.flower@ezweb.ne.jp');
+$mail->AddAddress('serizawa.yuuki@ezweb.ne.jp');
+$mail->AddAddress('koyamaryoma@gmail.com');
+$mail->AddAddress('lilac-stars@ezweb.ne.jp');
 
 if( !$mail -> Send() ){
     $message  = "Message was not sent<br/ >";

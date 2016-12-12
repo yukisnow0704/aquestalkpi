@@ -74,6 +74,7 @@ function send_mail($subject, $body, $photo) {
         return false;
     } else {
         $message  = "Message has been sent";
+        return ture;
     }
 
 }
