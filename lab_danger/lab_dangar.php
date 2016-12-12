@@ -8,7 +8,6 @@ $soundpin=8;
 $touchpin=26;
 $peoplepin=6;
 $callpin=20;
-$calloutput=3;
 
 wiringPiSetupGpio();
 
@@ -18,7 +17,6 @@ pinMode($soundpin, 0);
 pinMode($touchpin, 0);
 pinMode($peoplepin, 0);
 pinMode($callpin, 0);
-pinMode($calloutput, 1);
 
 //管理用
 $isFunction=false;
@@ -65,6 +63,7 @@ function send_mail($subject, $body, $photo) {
     if( !$mail -> Send() ){
         $message  = "Message was not sent<br/ >";
         $message .= "Mailer Error: " . $mailer->ErrorInfo;
+        return false;
     } else {
         $message  = "Message has been sent";
     }
@@ -210,7 +209,9 @@ while (true) {
             $isFunction = true;
 
             //メールの配信
-            send_mail($subject, $body, false);
+            $result = send_mail($subject, $body, false);
+            if (!$result)
+                $text = "できませんでした";
 
         }
 
