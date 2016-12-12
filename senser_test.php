@@ -5,9 +5,11 @@ $var;
 
 wiringPiSetupGpio();
 
-pinMode($buttonpin, 0);
+
+pinMode($callpin, 0);
+pinMode($calloutput, 1);
 
 while (true) {
-	$var = digitalRead($buttonpin);
+	$var = digitalRead($callpin);
 	print($var);
 }
