@@ -1,6 +1,7 @@
 <?php
 
-$buttonpin=8;
+$callpin=20;
+$calloutput=3;
 $var;
 
 wiringPiSetupGpio();
