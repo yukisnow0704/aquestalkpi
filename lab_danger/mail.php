@@ -1,7 +1,7 @@
 <?php
 require_once ( 'PHPMailerAutoload.php' );
-$subject = "タイトル";
-$body = "メール本文";
+$subject = "テストメール";
+$body = "テストメールです。気がついたらメッセージを伊藤まで送ってください。";
 $fromname = "me";
 $from = "sist.kudolab@gmail.com";
 $smtp_user = "sist.kudolab@gmail.com";
