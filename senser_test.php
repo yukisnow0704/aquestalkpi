@@ -1,6 +1,6 @@
 <?php
 
-$callpin=20;
+$callpin=8;
 $var;
 
 wiringPiSetupGpio();
