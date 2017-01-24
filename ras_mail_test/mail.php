@@ -3,9 +3,9 @@ require_once ( 'PHPMailerAutoload.php' );
 $subject = "タイトル";
 $body = "メール本文";
 $fromname = "me";
-$from = "sist.kudolab@gmail.com";
-$smtp_user = "sist.kudolab@gmail.com";
-$smtp_password = "kudo0401";
+$from = "yukisnow0704@gmail.com";
+$smtp_user = "yukisnow0704@gmail.com";
+$smtp_password = "1192snow";
 
 $mail = new PHPMailer();
 $mail->IsSMTP();
